@@ -45,6 +45,7 @@
       "price": 405,
       "image": "./assets/img/img05.jpg",
       "category": "nike",
+      "model": "Nike Dunk",
       "img1": " https://stockx-360.imgix.net/Nike-Dunk-Low-SP-Kentucky/Images/Nike-Dunk-Low-SP-Kentucky/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606322330&w=1000",
       "cantidad": 3

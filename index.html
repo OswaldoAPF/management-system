@@ -18,11 +18,11 @@
     </header>
 
 
-    <main>
+    <main class="bg-dark">
 
 
         <section class="d-flex flex-wrap justify-content-center gap-5">
-            <h1 class="w-100 text-center">NIKE</h1>
+            <h1 class="w-100 text-center text-white">NIKE</h1>
             <template v-for="shoe in shoes">
                 <div class="card" style="width: 18rem;">
                     <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
@@ -37,8 +37,8 @@
                         <p v-if="shoe.cantidad > 0" class="card-text"> Unidades disponibles: {{shoe.cantidad}}</p>
                         <p v-if="shoe.cantidad == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
 
-                        <a href="#" v-if="shoe.cantidad > 0" class="btn btn-success justify-self-end"   >Add to cart</a>
-                        <a href="#" v-if="shoe.cantidad == 0" class="btn btn-success">Add to cart</a>
+                        <a href="#" v-if="shoe.cantidad > 0" class="btn btn-dark justify-self-end"   >Add to cart</a>
+                        <a href="#" v-if="shoe.cantidad == 0" class="btn btn-dark">Add to cart</a>
                     </div>
                 </div>
             </template>
