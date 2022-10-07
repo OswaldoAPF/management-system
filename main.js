@@ -5,7 +5,10 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      shoes: []
+      shoes: [],
+      allShoes: [],
+      carrito: []
+      
     }
   },
 
@@ -18,5 +21,27 @@ createApp({
 
   methods:{
 
+    imprimirAll: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes
+    },
+
+    imprimirNike: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes.filter(e => e.category === "nike")
+    },
+
+    imprimirAdidas: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes.filter(e => e.category === "adidas")
+    },
+
+    agregarCarrito: function(){
+      
+    },
+
+    comprar: function(){
+
+    }
   }
 }).mount('#app')
