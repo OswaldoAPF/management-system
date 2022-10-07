@@ -18,10 +18,10 @@ createApp({
 
   methods:{
     addToCart(shoe){
-      let boolean = this.cart.some( e => e.id === shoe.id)
+      let boolean = this.cart.some( e => e.id === shoe.id) //
       console.log(boolean)
 
-      if(boolean){
+      if(boolean){ //si boleano es true, modifica propiedades del carrito, no modificar, funciona bien
         this.cart.forEach( e => {
             if(e.id === shoe.id ){
              e.inCart++
@@ -29,7 +29,7 @@ createApp({
              e.total += e.price
             }
         })
-    }else {this.cart.push(shoe)
+    }else {this.cart.push(shoe) //si es falso añade el producto al carrito
       shoe.inCart++
       shoe.stock--
       shoe.total=shoe.price
@@ -41,5 +41,13 @@ createApp({
       console.log(this.cart)
       console.log(this.shoes)
   },
+  deleteCartProduct(product){
+    //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO, en proceso...
+    if (this.cart.lenght>0){
+
+    }else if (this.cart.lenght===0){
+      console.log("no esta en el carrito")
+    }
+  }
 
 }}).mount('#app')

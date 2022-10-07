@@ -13,14 +13,46 @@
 
 <body id="app">
 
-    <header>
+    <header>    
+        <div class="d-flex justify-content-end mx-3">
+            <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+              cart
+            </button>
 
     </header>
 
 
     <main>
+        <!--cart  -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-header">
+              <p>Revisa tus productos aca!</p>
+            </div>
+            <div class="offcanvas-body">
+              <template v-for="product in cart" > 
+                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.stock > 0">
+                  <div class="card-body">
+                    <img class="w-25" :src="product.image" alt="cart_imagen">
+                    <h5 class="card-title fw-bold">{{product.title}}</h5>
+                    <p class="card-text">${{product.total}}</p>
+                    <p class="card-text">Cantidad: {{product.inCart}}</p>
+                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Sacar del cart</button>
+                  </div>
+                </div>
+                <div v-else></div>
+              </template> 
+              </div>
+            <div class="d-flex justify-content-center flex-column align-items-center border-top">
+              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalcart}}</p>
+              <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Comprar</button>
+            </div>
+          </div>
 
-
+        <!-- LISTA DE PRODUCTOS -->
         <section class="d-flex flex-wrap justify-content-center gap-5">
             <h1 class="w-100 text-center">NIKE</h1>
             <template v-for="shoe in shoes">
