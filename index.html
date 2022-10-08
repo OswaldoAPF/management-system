@@ -8,20 +8,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Document</title>
 </head>
 
-<body id="app">
+<body id="app" class="bg-dark">
 
     <header>
 
     </header>
 
 
-    <main class="bg-dark">
+    <main>
 
 
-        <section class="d-flex flex-wrap justify-content-center gap-5">
+        <section class="d-flex flex-wrap justify-content-center gap-5 mb-4">
             <h1 class="w-100 text-center text-white">NIKE</h1>
             <template v-for="shoe in shoes">
                 <div class="card" style="width: 18rem;">
@@ -49,8 +51,23 @@
 
     </main>
 
-
-    <footer>
+    <footer class="footer pt-4 mt-5 pb-5">
+        <div class="conteiner-footer">  
+            <div class="mb-3 title">CONTACT US</div>
+            <div class="paragraph-footer mb-1"><i class="bi bi-facebook me-2"></i>Facebook</div>
+            <div class="paragraph-footer mb-1"><i class="bi bi-instagram me-2"></i>Instagram</div>
+            <div class="paragraph-footer"><i class="bi bi-whatsapp me-2"></i>WhatsApp</div>
+        </div>
+        <div class="conteiner-footer">
+            <div class="title mb-3">ADDRESS</div>
+            <button class="title-footer"></button>
+            <!-- <div class=" paragraph-footer">305 Park Pl, Lincoln, IL 62656, EE. UU.</div> -->
+        </div>
+        <div class="conteiner-footer">
+            <div class="title mb-3">STAFF ACCOUNT</div>
+            <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
+        </div>
+        </div>
 
     </footer>
 

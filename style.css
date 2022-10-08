@@ -1,0 +1,132 @@
+.footer{
+    text-align: center;
+    background-color: black;
+    padding: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: aliceblue;
+}
+.conteiner-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.title{
+    letter-spacing: .2rem;
+    font-weight: 700;
+    text-shadow: .1rem .1rem .1rem #333;
+}
+/* ADDRESS */
+.title-footer{
+ padding: 2rem 15rem;
+ color: aliceblue;
+ background-color: black;
+ font-size: 10px;
+ margin-bottom: 15px;
+/*  border: 0.1rem solid #fff; */
+ cursor: pointer;
+ position: relative;
+ border-radius: .3rem;
+ overflow: hidden;
+}
+.title-footer:before{
+    content: url("./assets/img/location.png");  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: aliceblue;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    font-weight: 700;
+    text-shadow: .1rem .1rem .1rem #333;
+    transition: .2s ease;
+}
+.title-footer:after{
+    content: "305 Park Pl, Lincoln, IL 62656, EE. UU.";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: aliceblue;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    font-weight: 700;
+    text-shadow: .1rem .1rem .1rem #333;
+    transition: .2s ease;
+    opacity: 0;
+}
+.title-footer:hover::before{
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+
+}
+.title-footer:hover::after{
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    color: brown;
+}
+/* SOCIAL NETWORKS */
+.title-footer-fb{
+    padding: 2rem 5rem;
+    color: aliceblue;
+    background-color: black;
+    font-size: 10px;
+    margin-bottom: 15px;
+   /*  border: 0.1rem solid #fff; */
+    cursor: pointer;
+    position: relative;
+    border-radius: .3rem;
+    overflow: hidden;
+   }
+   .title-footer-fb:before{
+       content: url("./assets/img/facebook.png");  
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 20px;
+       color: aliceblue;
+       letter-spacing: .3rem;
+       font-weight: 700;
+       text-shadow: .1rem .1rem .1rem #333;
+       transition: .2s ease;
+   }
+   .title-footer-fb:after{
+       content: "Facebook";
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 1rem;
+       color: aliceblue;
+       
+       letter-spacing: .3rem;
+       font-weight: 700;
+       text-shadow: .1rem .1rem .1rem #333;
+       transition: .2s ease;
+       opacity: 0;
+   }
+   .title-footer-fb:hover::before{
+       transform: translate(-50%, -50%) scale(3);
+       opacity: 0;
+   
+   }
+   .title-footer-fb:hover::after{
+       transform: translate(-50%, -50%) scale(1);
+       opacity: 1;
+       color: brown;
+   }
+
+.paragraph-footer{              
+ font-size: 20px;
+ color: azure;
+}
+.paragraph-footer:hover{
+    color: brown;
+    transition: 0.5s;
+}
