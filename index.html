@@ -30,7 +30,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-header">
-              <p>Revisa tus productos aca!</p>
+              <p>Check your products here!</p>
             </div>
             <div class="offcanvas-body">
               <template v-for="product in cart" > 
@@ -40,15 +40,15 @@
                     <h5 class="card-title fw-bold">{{product.title}}</h5>
                     <p class="card-text">Quantity: {{product.inCart}}</p>
                     <p class="card-text">${{product.total}}</p>
-                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Sacar del cart</button>
+                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
                   </div>
                 </div>
                 <div v-else></div>
               </template> 
               </div>
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
-              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalcart}}</p>
-              <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Comprar</button>
+              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
+              <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
             <template v-for="shoe in shoes">
                 <div class="card" style="width: 18rem;">
                     <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
-                        v-if="shoe.stock > 0 && shoe.stock < 5">¡Pocas Unidades!</p>
+                        v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
                     <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
                         v-if="shoe.stock == 0"></p>
                     <img :src="shoe.image" class="card-img-top" alt="...">
@@ -67,10 +67,10 @@
                         <p class=" ">${{shoe.price}}</p>
 
                         <p v-if="shoe.stock > 0" class="card-text"> Unidades disponibles: {{shoe.stock}}</p>
-                        <p v-if="shoe.stock == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
+                        <p v-if="shoe.stock == 0" class="card-text"> Unidades disponibles: NO STOCK</p>
 
                         <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)"  >Add to cart</button>
-                        <button href="#" v-if="shoe.stock == 0" class="btn btn-success" >Add to cart</button>
+                        <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
                     </div>
                 </div>
             </template>

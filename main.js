@@ -5,7 +5,7 @@ createApp({
     return {
       shoes: [],
       cart:[],
-      totalCart:[]
+      totalPrice:0
     }
   },
 
@@ -29,6 +29,7 @@ createApp({
              e.total += e.price
              //this.cart.inCart++ //activar si hay bugs en el carrito
              //this.cart.stock--
+             this.totalPrice+=shoe.price
             }
         })
     }else if(boolean===false && shoe.stock>0){this.cart.push(shoe) //si es falso añade el producto al carrito
@@ -38,6 +39,7 @@ createApp({
       this.cart.inCart++
       this.cart.stock--
       this.cart.total+=this.cart.price
+      this.totalPrice=this.totalPrice+shoe.total
     }
 
       console.log(this.cart)
@@ -49,7 +51,7 @@ createApp({
       product.inCart--
       product.stock++
       product.total=product.total-product.price
-      //reponer stock del array shoes
+      this.totalPrice-=product.price
     }else{
       //console.log(this.cart.indexOf(product))
       product.inCart--
@@ -57,15 +59,14 @@ createApp({
       product.total=null
       productIndex=this.cart.indexOf(product)//guarda la ubicacion del producto en el array
       this.cart.splice(productIndex ,0) //elimina producto del array
+      this.totalPrice-=product.price
     }
     productIndex=null
   }
 
-},computed:{
-  totalPrice(){
-     //Sumar el total de los totales de los productos dentro del carrito
-  }
- 
+},
+  computed:{
+
 }
 
 }).mount('#app')
