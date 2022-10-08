@@ -34,7 +34,7 @@
             </div>
             <div class="offcanvas-body">
               <template v-for="product in cart" > 
-                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.stock > 0">
+                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
                   <div class="card-body">
                     <img class="w-25" :src="product.image" alt="cart_imagen">
                     <h5 class="card-title fw-bold">{{product.title}}</h5>
