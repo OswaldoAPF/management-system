@@ -38,8 +38,8 @@
                   <div class="card-body">
                     <img class="w-25" :src="product.image" alt="cart_imagen">
                     <h5 class="card-title fw-bold">{{product.title}}</h5>
+                    <p class="card-text">Quantity: {{product.inCart}}</p>
                     <p class="card-text">${{product.total}}</p>
-                    <p class="card-text">Cantidad: {{product.inCart}}</p>
                     <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Sacar del cart</button>
                   </div>
                 </div>

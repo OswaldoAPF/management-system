@@ -48,15 +48,24 @@ createApp({
     if(product.inCart>1){
       product.inCart--
       product.stock++
+      product.total=product.total-product.price
       //reponer stock del array shoes
     }else{
       //console.log(this.cart.indexOf(product))
       product.inCart--
       product.stock++
+      product.total=null
       productIndex=this.cart.indexOf(product)//guarda la ubicacion del producto en el array
       this.cart.splice(productIndex ,0) //elimina producto del array
     }
     productIndex=null
   }
 
-}}).mount('#app')
+},computed:{
+  totalPrice(){
+     //Sumar el total de los totales de los productos dentro del carrito
+  }
+ 
+}
+
+}).mount('#app')
