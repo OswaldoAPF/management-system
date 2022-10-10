@@ -1,0 +1,371 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#app{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button{
+    border: none;
+    background-color: transparent;
+}
+
+
+/* HEADER */
+
+header{
+    width: 100%;
+    height: 60px;
+    background-color: black;
+}
+
+header nav{
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
+
+header nav .button-header{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.line-hover{
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    border-radius: 2px;
+    position: relative;
+    right: 150%;
+    transition: all ease 0.3s;
+}
+
+header nav button:hover .line-hover{
+    position: relative;
+    right: 0;
+    transition: all ease 0.3s;
+}
+
+.modal-nav{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.833);
+    top: -100%;
+    transition: all ease 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.modal-nav .button-nav{
+    color: black;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.3s;
+    border-radius: 5px;
+
+}
+
+.button-nav:hover{
+    width: 350px;
+    height: 250px;
+    transition: all ease 0.3s;
+}
+
+.button-nav div{
+    position: absolute;
+    opacity: 0;
+}
+
+.button-nav:hover .button-span-one{
+    position: absolute;
+    opacity: 1;
+    width: 350px;
+    height: 250px;
+    transition: all ease 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.797);
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.button-nav:hover .button-span-two{
+    position: absolute;
+    opacity: 1;
+    width: 350px;
+    height: 250px;
+    transition: all ease 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.797);
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.button-nav:hover .button-span-three{
+    position: absolute;
+    opacity: 1;
+    width: 350px;
+    height: 250px;
+    transition: all ease 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.797);
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.button-nav img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.button-nav span img{
+    width: 150px;
+    height: 90px;
+}
+
+.openNav{
+    position: fixed;
+    top: 0;
+    transition: all ease 0.4s;
+}
+
+.close-modal-nav{
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.button-nav:hover .line-hover{
+    position: relative;
+    right: 0;
+    transition: all ease 0.3s;
+    z-index: 20;
+}
+
+.img-dif{
+    width: 150px;
+    height: 100px !important;
+}
+
+
+
+/* MAIN */
+
+main{
+    width: 100%;
+
+}
+
+/* FOOTER */
+
+footer{
+    background-color: black;
+    width: 100%;
+    height: 45px;
+    align-self: flex-end;
+}
+
+/* MEDIA QUERY */
+
+@media (min-width: 768px) {
+    .modal-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .modal-nav .button-nav{
+        color: black;
+        background-color: white;
+        width: 250px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all ease 0.3s;
+        border-radius: 5px;
+    
+    }
+    
+    .button-nav:hover{
+        width: 300px;
+        height: 200px;
+        transition: all ease 0.3s;
+    }
+    
+    .button-nav div{
+        position: absolute;
+        opacity: 0;
+    }
+    
+    .button-nav:hover .button-span-one{
+        position: absolute;
+        opacity: 1;
+        width: 300px;
+        height: 200px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+    
+    .button-nav:hover .button-span-two{
+        position: absolute;
+        opacity: 1;
+        width: 300px;
+        height: 200px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+    
+    .button-nav:hover .button-span-three{
+        position: absolute;
+        opacity: 1;
+        width: 300px;
+        height: 200px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .modal-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .modal-nav .button-nav{
+        color: black;
+        background-color: white;
+        width: 300px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all ease 0.3s;
+        border-radius: 5px;
+    
+    }
+    
+    .button-nav:hover{
+        width: 350px;
+        height: 250px;
+        transition: all ease 0.3s;
+    }
+
+    .button-nav:hover .button-span-one{
+        position: absolute;
+        opacity: 1;
+        width: 350px;
+        height: 250px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+    
+    .button-nav:hover .button-span-two{
+        position: absolute;
+        opacity: 1;
+        width: 350px;
+        height: 250px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+    
+    .button-nav:hover .button-span-three{
+        position: absolute;
+        opacity: 1;
+        width: 350px;
+        height: 250px;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.797);
+        font-size: 30px;
+        border-radius: 5px;
+    }
+
+}
