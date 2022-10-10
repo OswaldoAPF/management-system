@@ -15,39 +15,66 @@
 
 <body id="app" class="bg-dark">
 
-    <header>
+    <header>    
+        <div class="d-flex justify-content-end mx-3">
+            <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+              cart
+            </button>
 
     </header>
-
-
     <main>
+        <!--cart  -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-header">
+              <p>Check your products here!</p>
+            </div>
+            <div class="offcanvas-body">
+              <template v-for="product in cart" > 
+                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
+                  <div class="card-body">
+                    <img class="w-25" :src="product.image" alt="cart_imagen">
+                    <h5 class="card-title fw-bold">{{product.title}}</h5>
+                    <p class="card-text">Quantity: {{product.inCart}}</p>
+                    <p class="card-text">${{product.total}}</p>
+                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+                  </div>
+                </div>
+                <div v-else></div>
+              </template> 
+              </div>
+            <div class="d-flex justify-content-center flex-column align-items-center border-top">
+              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
+              <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+            </div>
+          </div>
 
-
-        <section class="d-flex flex-wrap justify-content-center gap-5 mb-4">
-            <h1 class="w-100 text-center text-white">NIKE</h1>
+        <!-- LISTA DE PRODUCTOS -->
+        <section class="d-flex flex-wrap justify-content-center gap-5">
+            <h1 class="w-100 text-center">NIKE</h1>
             <template v-for="shoe in shoes">
                 <div class="card" style="width: 18rem;">
                     <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
-                        v-if="shoe.cantidad > 0 && shoe.cantidad < 5">¡Pocas Unidades!</p>
+                        v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
                     <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
-                        v-if="shoe.cantidad == 0"></p>
+                        v-if="shoe.stock == 0"></p>
                     <img :src="shoe.image" class="card-img-top" alt="...">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{shoe.title}}</h5>
                         <p class=" ">${{shoe.price}}</p>
 
-                        <p v-if="shoe.cantidad > 0" class="card-text"> Unidades disponibles: {{shoe.cantidad}}</p>
-                        <p v-if="shoe.cantidad == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
+                        <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
+                        <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
 
-                        <a href="#" v-if="shoe.cantidad > 0" class="btn btn-dark justify-self-end"   >Add to cart</a>
-                        <a href="#" v-if="shoe.cantidad == 0" class="btn btn-dark">Add to cart</a>
+                        <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)"  >Add to cart</button>
+                        <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
                     </div>
                 </div>
             </template>
         </section>
-
-
-
 
     </main>
 
@@ -71,6 +98,8 @@
 
     </footer>
 
+    <!-- CHART.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
