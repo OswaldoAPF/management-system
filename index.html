@@ -2,115 +2,146 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <!-- ICONOS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <title>Document</title>
+
 </head>
 
-<body id="app" class="bg-dark">
+<body class="bg-dark">
+  <div id="app">
 
-    <header>    
-        <div class="d-flex justify-content-end mx-3">
-            <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-              cart
-            </button>
+    <div :class="{'openNav' : openModalNav}" class="modal-nav">
+      <button class="close-modal-nav" @click="openModalNav = false">X</button>
+
+      <button class="button-nav" @click="imprimirNike"><img src="./assets/img/modeloNike.jpg">
+        <div class="button-span-one"><span><img src="./assets/img/nikeBlanco.png"></span></div>
+      </button>
+      <button class="button-nav" @click="imprimirAdidas"><img src="./assets/img/modeloAdidas.jpg">
+        <div class="button-span-two"><span><img class="img-dif" src="./assets/img/adidasBlanco.png"></span></div>
+      </button>
+      <button class="button-nav" @click="imprimirAll"><img src="./assets/img/modeloPuma.jpg">
+        <div class="button-span-three"><span><img src="./assets/img/pumaBlanco.png"></span></div>
+      </button>
+
+    </div>
+
+    <header>
+      <nav>
+        <button class="button-header">Home<div class="line-hover"></div></button>
+        <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
+        <button class="button-header">Contact<div class="line-hover"></div></button>
+        <button class="button-header">Desk<div class="line-hover"></div></button>
+      </nav>
+
+      <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight">
+        cart
+      </button>
+
 
     </header>
+
+
     <main>
-        <!--cart  -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-header">
-              <p>Check your products here!</p>
-            </div>
-            <div class="offcanvas-body">
-              <template v-for="product in cart" > 
-                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
-                  <div class="card-body">
-                    <img class="w-25" :src="product.image" alt="cart_imagen">
-                    <h5 class="card-title fw-bold">{{product.title}}</h5>
-                    <p class="card-text">Quantity: {{product.inCart}}</p>
-                    <p class="card-text">${{product.total}}</p>
-                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
-                  </div>
-                </div>
-                <div v-else></div>
-              </template> 
+      <!--cart  -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-header">
+          <p>Check your products here!</p>
+        </div>
+        <div class="offcanvas-body">
+          <template v-for="product in cart">
+            <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
+              <div class="card-body">
+                <img class="w-25" :src="product.image" alt="cart_imagen">
+                <h5 class="card-title fw-bold">{{product.title}}</h5>
+                <p class="card-text">Quantity: {{product.inCart}}</p>
+                <p class="card-text">${{product.total}}</p>
+                <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
               </div>
-            <div class="d-flex justify-content-center flex-column align-items-center border-top">
-              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-              <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+            </div>
+            <div v-else></div>
+          </template>
+        </div>
+        <div class="d-flex justify-content-center flex-column align-items-center border-top">
+          <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
+          <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+        </div>
+      </div>
+
+
+      <section class="d-flex flex-wrap justify-content-center gap-5">
+        <h1 class="w-100 text-center">NIKE</h1>
+        <template v-for="shoe in shoes">
+          <div class="card" style="width: 18rem;">
+            <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
+              v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
+            <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
+              v-if="shoe.stock == 0"></p>
+            <img :src="shoe.image" class="card-img-top" alt="...">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{shoe.title}}</h5>
+              <p class=" ">${{shoe.price}}</p>
+
+              <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
+              <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
+
+              <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)">Add to
+                cart</button>
+              <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
             </div>
           </div>
-
-        <!-- LISTA DE PRODUCTOS -->
-        <section class="d-flex flex-wrap justify-content-center gap-5">
-            <h1 class="w-100 text-center">NIKE</h1>
-            <template v-for="shoe in shoes">
-                <div class="card" style="width: 18rem;">
-                    <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
-                        v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
-                    <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
-                        v-if="shoe.stock == 0"></p>
-                    <img :src="shoe.image" class="card-img-top" alt="...">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{shoe.title}}</h5>
-                        <p class=" ">${{shoe.price}}</p>
-
-                        <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
-                        <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
-
-                        <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)"  >Add to cart</button>
-                        <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
-                    </div>
-                </div>
-            </template>
-        </section>
+        </template>
+      </section>
 
     </main>
 
+
+
     <footer class="footer pt-4 mt-5 pb-5">
-        <div class="conteiner-footer">  
-            <div class="mb-3 title">CONTACT US</div>
-            <div class="paragraph-footer mb-1"><i class="bi bi-facebook me-2"></i>Facebook</div>
-            <div class="paragraph-footer mb-1"><i class="bi bi-instagram me-2"></i>Instagram</div>
-            <div class="paragraph-footer"><i class="bi bi-whatsapp me-2"></i>WhatsApp</div>
-        </div>
-        <div class="conteiner-footer">
-            <div class="title mb-3">ADDRESS</div>
-            <button class="title-footer"></button>
-            <!-- <div class=" paragraph-footer">305 Park Pl, Lincoln, IL 62656, EE. UU.</div> -->
-        </div>
-        <div class="conteiner-footer">
-            <div class="title mb-3">STAFF ACCOUNT</div>
-            <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
-        </div>
-        </div>
+      <div class="conteiner-footer">
+        <div class="mb-3 title">CONTACT US</div>
+        <div class="paragraph-footer mb-1"><i class="bi bi-facebook me-2"></i>Facebook</div>
+        <div class="paragraph-footer mb-1"><i class="bi bi-instagram me-2"></i>Instagram</div>
+        <div class="paragraph-footer"><i class="bi bi-whatsapp me-2"></i>WhatsApp</div>
+      </div>
+      <div class="conteiner-footer">
+        <div class="title mb-3">ADDRESS</div>
+        <button class="title-footer"></button>
+        <!-- <div class=" paragraph-footer">305 Park Pl, Lincoln, IL 62656, EE. UU.</div> -->
+      </div>
+      <div class="conteiner-footer">
+        <div class="title mb-3">STAFF ACCOUNT</div>
+        <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
+      </div>
+  </div>
 
-    </footer>
+  </footer>
+  </div>
 
-    <!-- CHART.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
-    <!-- BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
+  <!-- CHART.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+    crossorigin="anonymous"></script>
 
-    <!-- VUE.JS -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./main.js"></script>
+  <!-- VUE.JS -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

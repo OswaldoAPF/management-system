@@ -7,7 +7,8 @@ createApp({
       allShoes: [],
       carrito: [],
       cart:[],
-      totalPrice:0
+      totalPrice:0,
+      openModalNav: true,
     }
   },
   created(){
@@ -26,16 +27,19 @@ createApp({
     imprimirAll: function(){
       this.allShoes = []
       this.allShoes = this.shoes
+      this.openModalNav = false
     },
 
     imprimirNike: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "nike")
+      this.openModalNav = false
     },
 
     imprimirAdidas: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "adidas")
+      this.openModalNav = false
     },
 
     agregarCarrito: function(){
@@ -87,4 +91,3 @@ createApp({
     productIndex=null
   }
 }).mount('#app')
-
