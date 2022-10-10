@@ -6,7 +6,7 @@ createApp({
       shoes: [],
       allShoes: [],
       carrito: [],
-      openModalNav: true,
+      openModalNav: false,
       
     }
   },
