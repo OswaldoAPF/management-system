@@ -64,7 +64,11 @@ createApp({
       this.totalPrice-=product.price
     }
     productIndex=null
-  }, //KEILA
+  },
+  buy(){
+    alert("Thaks for the purchase")
+  },
+  //KEILA
     imprimirAll: function(){
       this.allShoes = []
       this.allShoes = this.shoes
