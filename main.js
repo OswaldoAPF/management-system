@@ -7,8 +7,10 @@ createApp({
       allShoes: [],
       carrito: [],
       openModalNav: false,
+      login: false
       
     }
+
   },
 
   created(){
@@ -46,4 +48,5 @@ createApp({
 
     }
   }
+  
 }).mount('#app')
