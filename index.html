@@ -38,6 +38,10 @@
         <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
         <button class="button-header">Contact<div class="line-hover"></div></button>
         <button class="button-header">Desk<div class="line-hover"></div></button>
+          <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight" id="cart-button">
+          Cart<div class="line-hover"></div>
+        </button>
       </nav>
     </header>
     
@@ -45,10 +49,7 @@
     <main>
    
       <template v-if="page === 'home'">
-        <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight">
-          cart
-        </button>
+      
            <!--cart  -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
