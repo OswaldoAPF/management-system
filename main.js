@@ -12,7 +12,6 @@ createApp({
     }
 
   },
-
   created(){
     fetch('nike.json')
     .then(res => res.json())
@@ -22,9 +21,33 @@ createApp({
 
   methods:{
     addToCart(shoe){
-      let boolean = this.cart.some( e => e.id === shoe.id) //
+      let boolean = this.cart.some( e => e.id === shoe.id) 
       console.log(boolean)
+    },
 
+    imprimirAll: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes
+      this.openModalNav = false
+    },
+
+    imprimirNike: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes.filter(e => e.category === "nike")
+      this.openModalNav = false
+    },
+
+    imprimirAdidas: function(){
+      this.allShoes = []
+      this.allShoes = this.shoes.filter(e => e.category === "adidas")
+      this.openModalNav = false
+    },
+
+    agregarCarrito: function(){
+      
+    },
+
+    comprar: function(){
       if(boolean){ //si boleano es true, modifica propiedades del carrito, no modificar, funciona bien
         this.cart.forEach( e => {
             if(e.id === shoe.id ){
@@ -36,7 +59,7 @@ createApp({
              this.totalPrice+=shoe.price
             }
         })
-    }else if(boolean===false && shoe.stock>0){this.cart.push(shoe) //si es falso añade el producto al carrito
+      }else if(boolean===false && shoe.stock>0){this.cart.push(shoe) //si es falso añade el producto al carrito
       shoe.inCart++
       shoe.stock--
       shoe.total=shoe.price
@@ -45,7 +68,6 @@ createApp({
       this.cart.total+=this.cart.price
       this.totalPrice=this.totalPrice+shoe.total
     }
-
       console.log(this.cart)
       console.log(this.shoes)
   },
@@ -88,13 +110,6 @@ createApp({
     this.openModalNav = false
   },
 
-  agregarCarrito: function(){
-    
-  },
-
-  comprar: function(){
-
-  }
 }
 
 
