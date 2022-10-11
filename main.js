@@ -65,7 +65,7 @@ createApp({
     }
     productIndex=null
   },
-  buy(){
+  buy(){ 
     alert("Thaks for the purchase")
   },
   //KEILA
