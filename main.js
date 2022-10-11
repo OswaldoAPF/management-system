@@ -131,8 +131,6 @@ createApp({
       console.log(product);
     },
 
-
-
     printFav: function(){
       this.openModalNav = false
       this.favShoes = this.favShoes
