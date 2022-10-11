@@ -34,10 +34,10 @@
 
     <header>
       <nav>
-        <button class="button-header" @click="filter=false,filterCategory='none'">Home<div class="line-hover"></div></button>
+        <button class="button-header" @click="page='home',filter=false,filterCategory='none'">Home<div class="line-hover"></div></button>
         <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
         <button class="button-header">Contact<div class="line-hover"></div></button>
-        <button class="button-header">Desk<div class="line-hover"></div></button>
+        <button class="button-header" @click="page='desk'">Desk<div class="line-hover"></div></button>
           <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight" id="cart-button">
           Cart<div class="line-hover"></div>
