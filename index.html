@@ -39,18 +39,17 @@
         <button class="button-header">Contact<div class="line-hover"></div></button>
         <button class="button-header">Desk<div class="line-hover"></div></button>
       </nav>
-
-      <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight">
-        cart
-      </button>
-
-
     </header>
-
-
+    
+    
     <main>
-      <!--cart  -->
+   
+      <template v-if="page === 'home'">
+        <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight">
+          cart
+        </button>
+           <!--cart  -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
@@ -103,6 +102,17 @@
           </div>
         </template>
       </section>
+      </template>
+
+      <template v-if="page === 'desk'">
+        
+         <div>
+          <canvas id="myChart"></canvas>
+         </div>
+        
+      </template>
+
+
 
     </main>
 
@@ -131,6 +141,8 @@
 
   <!-- CHART.JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
   <!-- BOOTSTRAP -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

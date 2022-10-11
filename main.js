@@ -5,10 +5,10 @@ createApp({
     return {
       shoes: [],
       allShoes: [],
-      carrito: [],
       cart:[],
       totalPrice:0,
-      openModalNav: true,
+      openModalNav: false,
+      page: "home",
     }
   },
   created(){
@@ -91,3 +91,40 @@ createApp({
     productIndex=null
   }
 }).mount('#app')
+
+
+const chr =  document.getElementById('myChart').getContext("2d");
+const data = {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{
+        label: 'Total Sales',
+        data: [18,12,6,9,12,3,9],
+        backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    {
+        label: 'Sales Sub Branch',
+        data: [18,12,6,9,12,3,9],
+        backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    {
+        label: 'Sales Main Branch',
+        data: [18,12,6,9,12,3,9],
+        backgroundColor: 'rgba(0,0,0,0.5)'
+    }
+]
+};
+const config = {
+    type: 'bar',
+    data,
+    options: {
+        scales:{
+            y:{
+                beginAtZero: true
+            }
+        }
+    }
+}
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
