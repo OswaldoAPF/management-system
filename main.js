@@ -10,6 +10,7 @@ createApp({
       openModalNav: false,
       page: "home",
       filter:false,
+      filterCategory:"none"
     }
   },
   created(){
@@ -74,18 +75,21 @@ createApp({
       this.allShoes = []
       this.allShoes = this.shoes.filter(e=>e.category==="puma")
       this.openModalNav = false
+      this.filterCategory="puma"
     },
 
     printNike: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "nike")
       this.openModalNav = false
+      this.filterCategory="nike"
     },
 
     printAdidas: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "adidas")
       this.openModalNav = false
+      this.filterCategory="adidas"
     }
    }
 

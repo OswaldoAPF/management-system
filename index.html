@@ -34,7 +34,7 @@
 
     <header>
       <nav>
-        <button class="button-header" @click="filter=false">Home<div class="line-hover"></div></button>
+        <button class="button-header" @click="filter=false,filterCategory='none'">Home<div class="line-hover"></div></button>
         <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
         <button class="button-header">Contact<div class="line-hover"></div></button>
         <button class="button-header">Desk<div class="line-hover"></div></button>
@@ -79,9 +79,11 @@
           </div>
         </div>
 
-
+        <h1 class="w-100 text-center" v-if="filter===false" id="Shoes-title">All Shoes</h1>
+        <h1 class="w-100 text-center" v-if="filterCategory==='nike'" id="Shoes-title">Nike Shoes</h1>
+        <h1 class="w-100 text-center" v-if="filterCategory==='adidas'" id="Shoes-title">Adidas Shoes</h1>
+        <h1 class="w-100 text-center" v-if="filterCategory==='puma'" id="Shoes-title">Puma Shoes</h1>
         <section class="d-flex flex-wrap justify-content-center gap-5">
-          <h1 class="w-100 text-center">NIKE</h1>
           <!-- lista por defecto -->
           <template v-for="shoe in shoes" v-if="filter===false">
             <div class="card" style="width: 18rem;">
