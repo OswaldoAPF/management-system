@@ -19,7 +19,7 @@ createApp({
   },
 
   methods:{
-    addToCart(shoe){
+    addToCart(shoe){ //BENJA
       let boolean = this.cart.some( e => e.id === shoe.id) //
       console.log(boolean)
 
@@ -64,7 +64,7 @@ createApp({
       this.totalPrice-=product.price
     }
     productIndex=null
-  },
+  }, //KEILA
     imprimirAll: function(){
       this.allShoes = []
       this.allShoes = this.shoes
@@ -86,8 +86,8 @@ createApp({
 
 }).mount('#app')
 
-
-const chr =  document.getElementById('myChart').getContext("2d");
+//lili
+/*const chr =  document.getElementById('myChart').getContext("2d");
 const data = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [{
@@ -121,4 +121,4 @@ const config = {
 const myChart = new Chart(
     document.getElementById('myChart'),
     config
-  );
+  );*/
