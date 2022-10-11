@@ -8,7 +8,8 @@
       "model": "Nike LD Waffle",
       "img1": "https://stockx-360.imgix.net/Nike-LD-Waffle-Sacai-Black-Nylon/Images/Nike-LD-Waffle-Sacai-Black-Nylon/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606321430&w=1000",
-      "cantidad": 10
+      "stock": 10,
+      "inCart":0
     },
     {
       "id": 2,
@@ -19,7 +20,8 @@
       "model": "Nike Dunk",
       "img1": "https://stockx-360.imgix.net/Nike-Dunk-Low-Off-White-Pine-Green/Images/Nike-Dunk-Low-Off-White-Pine-Green/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606319825&w=1000",
-      "cantidad": 5
+      "stock": 5,
+      "inCart":0
     },
     {
       "id": 3,
@@ -30,7 +32,8 @@
       "model": "Nike Air",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Force-1-Low-Supreme-Box-Logo-Black/Images/Nike-Air-Force-1-Low-Supreme-Box-Logo-Black/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606325289&w=1000",
-      "cantidad": 8
+      "stock": 8,
+      "inCart":0
     },
     {
       "id": 4,
@@ -41,7 +44,8 @@
       "model": "Nike LD Waffle",
       "img1": "https://stockx-360.imgix.net/Nike-LD-Waffle-Sacai-White-Nylon/Images/Nike-LD-Waffle-Sacai-White-Nylon/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606325338&w=1000",
-      "cantidad": 12
+      "stock": 12,
+      "inCart":0
     },
     {
       "id": 5,
@@ -52,7 +56,8 @@
       "model": "Nike Dunk",
       "img1": " https://stockx-360.imgix.net/Nike-Dunk-Low-SP-Kentucky/Images/Nike-Dunk-Low-SP-Kentucky/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606322330&w=1000",
-      "cantidad": 3
+      "stock": 3,
+      "inCart":0
     },
     {
       "id": 6,
@@ -63,7 +68,8 @@
       "model": "Nike Dunk",
       "img1": "https://stockx-360.imgix.net/Nike-Dunk-Low-Off-White-University-Red/Images/Nike-Dunk-Low-Off-White-University-Red/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606321824&w=1000",
-      "cantidad": 7
+      "stock": 7,
+      "inCart":0
     },
     {
       "id": 7,
@@ -74,7 +80,8 @@
       "model": "Nike Air",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Max-2-Light-Atmos/Images/Nike-Air-Max-2-Light-Atmos/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606320966&w=1000",
-      "cantidad": 10
+      "stock": 10,
+      "inCart":0
     },
     {
       "id": 8,
@@ -85,7 +92,8 @@
       "model": "Nike Air",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Force-1-Low-Clot-Blue-Silk/Images/Nike-Air-Force-1-Low-Clot-Blue-Silk/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606325265&w=1000",
-      "cantidad": 8
+      "stock": 8,
+      "inCart":0
     },
     {
       "id": 9,
@@ -96,7 +104,8 @@
       "model": "Nike Air",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Max-90-OG-White-Particle-Grey-Volt/Images/Nike-Air-Max-90-OG-White-Particle-Grey-Volt/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1606323250&w=1000",
-      "cantidad": 2
+      "stock": 2,
+      "inCart":0
     },
     {
       "id": 10,
@@ -107,7 +116,8 @@
       "model": "Nike Dunk",
       "img1": "https://stockx-360.imgix.net/Nike-Dunk-High-Black-Varsity-Maize/Images/Nike-Dunk-High-Black-Varsity-Maize/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1609445259&w=1000",
-      "cantidad": 5
+      "stock": 5,
+      "inCart":0
     },
     {
       "id": 11,
@@ -118,8 +128,10 @@
       "model": "Nike Air",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Rubber-Dunk-Off-White-UNC/Images/Nike-Air-Rubber-Dunk-Off-White-UNC/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1609438911&w=1000",
-      "cantidad": 13
+      "stock": 8,
+      "inCart":0
     },
+    
     {
       "id": 12,
       "title": "Adidas Puremotion Super",
@@ -129,7 +141,9 @@
       "model": "Adidas Puremotion",
       "img1": "https://stockx-360.imgix.net/Nike-Air-Rubber-Dunk-Off-White-UNC/Images/Nike-Air-Rubber-Dunk-Off-White-UNC/Lv2/img",
       "img2": ".jpg?auto=format,compress&q=90&updated_at=1609438911&w=1000",
-      "cantidad": 15
+      "stock": 13,
+      "inCart":0
+
     }
 
   ]
