@@ -68,6 +68,15 @@ createApp({
     productIndex=null
   },
   buy(){ 
+    console.log(this.shoes[0])
+    let lenght=this.shoes.length;
+    for(let a=0 ; a<lenght;a++){
+      this.shoes[a].inCart=0
+    }
+    this.cart=[]
+    this.totalPrice=0
+   
+    //this.shoes.inCart=0
     alert("Thaks for the purchase")
   },
   //KEILA
