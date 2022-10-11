@@ -9,6 +9,7 @@ createApp({
       totalPrice:0,
       openModalNav: false,
       page: "home",
+      filter:false,
     }
   },
   created(){
@@ -69,19 +70,19 @@ createApp({
     alert("Thaks for the purchase")
   },
   //KEILA
-    imprimirAll: function(){
+    printPuma: function(){
       this.allShoes = []
-      this.allShoes = this.shoes
+      this.allShoes = this.shoes.filter(e=>e.category==="puma")
       this.openModalNav = false
     },
 
-    imprimirNike: function(){
+    printNike: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "nike")
       this.openModalNav = false
     },
 
-    imprimirAdidas: function(){
+    printAdidas: function(){
       this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "adidas")
       this.openModalNav = false

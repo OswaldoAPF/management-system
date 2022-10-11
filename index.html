@@ -20,13 +20,13 @@
     <div :class="{'openNav' : openModalNav}" class="modal-nav">
       <button class="close-modal-nav" @click="openModalNav = false">X</button>
 
-      <button class="button-nav" @click="imprimirNike"><img src="./assets/img/modeloNike.jpg">
+      <button class="button-nav" @click="printNike(), filter=true"><img src="./assets/img/modeloNike.jpg">
         <div class="button-span-one"><span><img src="./assets/img/nikeBlanco.png"></span></div>
       </button>
-      <button class="button-nav" @click="imprimirAdidas"><img src="./assets/img/modeloAdidas.jpg">
+      <button class="button-nav" @click="printAdidas(), filter=true"><img src="./assets/img/modeloAdidas.jpg">
         <div class="button-span-two"><span><img class="img-dif" src="./assets/img/adidasBlanco.png"></span></div>
       </button>
-      <button class="button-nav" @click="imprimirAll"><img src="./assets/img/modeloPuma.jpg">
+      <button class="button-nav" @click="printPuma(), filter=true"><img src="./assets/img/modeloPuma.jpg">
         <div class="button-span-three"><span><img src="./assets/img/pumaBlanco.png"></span></div>
       </button>
 
@@ -34,7 +34,7 @@
 
     <header>
       <nav>
-        <button class="button-header">Home<div class="line-hover"></div></button>
+        <button class="button-header" @click="filter=false">Home<div class="line-hover"></div></button>
         <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
         <button class="button-header">Contact<div class="line-hover"></div></button>
         <button class="button-header">Desk<div class="line-hover"></div></button>
@@ -82,7 +82,8 @@
 
         <section class="d-flex flex-wrap justify-content-center gap-5">
           <h1 class="w-100 text-center">NIKE</h1>
-          <template v-for="shoe in shoes">
+          <!-- lista por defecto -->
+          <template v-for="shoe in shoes" v-if="filter===false">
             <div class="card" style="width: 18rem;">
               <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
                 v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
@@ -102,6 +103,28 @@
               </div>
             </div>
           </template>
+          <!-- FILTRO DE KEI -->
+            <template v-for="shoe in allShoes" v-if="filter===true">
+              <div class="card" style="width: 18rem;">
+                <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
+                  v-if="shoe.cantidad > 0 && shoe.cantidad < 5">¡Pocas Unidades!</p>
+                <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
+                  v-if="shoe.cantidad == 0"></p>
+                <img :src="shoe.image" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">{{shoe.title}}</h5>
+                  <p class=" ">${{shoe.price}}</p>
+      
+                  <p v-if="shoe.cantidad > 0" class="card-text"> Unidades disponibles: {{shoe.cantidad}}</p>
+                  <p v-if="shoe.cantidad == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
+      
+                  <a href="#" v-if="shoe.cantidad > 0" class="btn btn-dark justify-self-end">Add to cart</a>
+                  <a href="#" v-if="shoe.cantidad == 0" class="btn btn-dark">Add to cart</a>
+                </div>
+              </div>
+            </template>
+          
+      
         </section>
       </template>
 
