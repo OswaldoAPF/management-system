@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
 }
 
 body{
@@ -288,6 +289,54 @@ main{
     transition: 0.5s;
 }
 
+/* Gerency */
+.conteiner-desk{
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 50px;
+    
+}
+.graphics{
+    width: 500px;
+}
+.gerency-welcome{
+    color: aliceblue;
+    letter-spacing: .2rem;
+    font-size: 28px;
+    margin: 10px;
+    width: 80%;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.633);
+
+}
+.gerency-welcome:hover{
+    color: brown;
+    transition: .5s;
+}
+.buttons-graphics{
+    margin-left: 130px;
+}
+.btn-graphics{
+    background-color: rgb(0, 0, 0);
+    margin: 10px;
+    padding: 5px;
+    color: aliceblue;
+}
+.btn-graphics:hover{
+    background-color: rgb(0, 0, 0);
+    color: aliceblue;
+    border: 2px solid brown;
+    margin: 10px;
+    padding: 5px;
+}
+
+.tbody-gerency tr td{
+    text-align: center;
+}
+
+.buttons-graphics-rigth{
+    margin-right: 250px;
+}
 
 /* MEDIA QUERY */
 

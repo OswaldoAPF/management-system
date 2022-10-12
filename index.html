@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="./style.css">
   <!-- ICONOS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <!-- fONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
   <title>Document</title>
 
 </head>
@@ -40,76 +44,151 @@
         <button class="button-header">Desk<div class="line-hover"></div></button>
       </nav>
     </header>
-    
-    
+
+
     <main>
-   
+
       <template v-if="page === 'home'">
         <button class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight">
           cart
         </button>
-           <!--cart  -->
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!--cart  -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-header">
+            <p>Check your products here!</p>
+          </div>
+          <div class="offcanvas-body">
+            <template v-for="product in cart">
+              <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
+                <div class="card-body">
+                  <img class="w-25" :src="product.image" alt="cart_imagen">
+                  <h5 class="card-title fw-bold">{{product.title}}</h5>
+                  <p class="card-text">Quantity: {{product.inCart}}</p>
+                  <p class="card-text">${{product.total}}</p>
+                  <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+                </div>
+              </div>
+              <div v-else></div>
+            </template>
+          </div>
+          <div class="d-flex justify-content-center flex-column align-items-center border-top">
+            <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
+            <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+          </div>
         </div>
-        <div class="offcanvas-header">
-          <p>Check your products here!</p>
-        </div>
-        <div class="offcanvas-body">
-          <template v-for="product in cart">
-            <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
-              <div class="card-body">
-                <img class="w-25" :src="product.image" alt="cart_imagen">
-                <h5 class="card-title fw-bold">{{product.title}}</h5>
-                <p class="card-text">Quantity: {{product.inCart}}</p>
-                <p class="card-text">${{product.total}}</p>
-                <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+
+
+        <section class="d-flex flex-wrap justify-content-center gap-5">
+          <h1 class="w-100 text-center">NIKE</h1>
+          <template v-for="shoe in shoes">
+            <div class="card" style="width: 18rem;">
+              <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
+                v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
+              <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
+                v-if="shoe.stock == 0"></p>
+              <img :src="shoe.image" class="card-img-top" alt="...">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{shoe.title}}</h5>
+                <p class=" ">${{shoe.price}}</p>
+
+                <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
+                <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
+
+                <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)">Add
+                  to
+                  cart</button>
+                <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
               </div>
             </div>
-            <div v-else></div>
           </template>
-        </div>
-        <div class="d-flex justify-content-center flex-column align-items-center border-top">
-          <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-          <button @click="comprar" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
-        </div>
-      </div>
-
-
-      <section class="d-flex flex-wrap justify-content-center gap-5">
-        <h1 class="w-100 text-center">NIKE</h1>
-        <template v-for="shoe in shoes">
-          <div class="card" style="width: 18rem;">
-            <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
-              v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
-            <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
-              v-if="shoe.stock == 0"></p>
-            <img :src="shoe.image" class="card-img-top" alt="...">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{shoe.title}}</h5>
-              <p class=" ">${{shoe.price}}</p>
-
-              <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
-              <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
-
-              <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end" v-on:click="addToCart(shoe)">Add to
-                cart</button>
-              <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
-            </div>
-          </div>
-        </template>
-      </section>
+        </section>
       </template>
 
       <template v-if="page === 'desk'">
+        <div class="d-flex justify-content-center text-center">
+          <p class="gerency-welcome">Welcome... Username</p>
+        </div>
+        <div class="d-flex justify-content-between">
+        <div class="buttons-graphics">
+          <button @click="graphics = 'week'" class="btn btn-graphics"> Sales For Week </button>
+          <button @click="graphics = 'month'" class="btn btn-graphics">Sales For Month</button>
+          <button @click="graphics = 'year'" class="btn btn-graphics">Sales By Year</button>
+        </div>
+        <div class="buttons-graphics-rigth">
+          <button @click="table = 'log'" class="btn btn-graphics">Work Hours</button>
+          <button @click="table = 'singin'" class="btn btn-graphics">Add To Staff</button>
+        </div>
+      </div>
+        <div class="conteiner-desk">
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'week'" class="graphics">
+                <canvas id="weekChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'month'" class="graphics">
+                <canvas id="monthChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'year'" class="graphics">
+                <canvas id="annualChart"></canvas>
+              </div>
+            </div>
+          </div>
         
-         <div>
-          <canvas id="myChart"></canvas>
-         </div>
+
+      <div class="w-50">
         
+        <table class="table table-dark table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">Employees</th>
+              <th class="text-center" scope="col">Check-in time</th>
+              <th class="text-center" scope="col">Break</th>
+              <th class="text-center" scope="col">Departure time</th>
+              <th class="text-center" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-gerency">
+            <tr>
+              <td>Yaki Siera</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Mark Kako</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Yoko Ono</td>
+              <td>10:30 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-x" style="color: #CE1515;"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
       </template>
 
 
