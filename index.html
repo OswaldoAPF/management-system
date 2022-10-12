@@ -129,26 +129,135 @@
               </div>
             </template>
             
-          </main> 
           
           
-          <footer>
-            
-        </footer>
-    </div>
+          
+    
 
-    <!-- BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-      crossorigin="anonymous"></script>
-    
-    <!-- VUE.JS -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./main.js"></script>
-    
+
+
+      <template v-if="page === 'desk'">
+        <div class="d-flex justify-content-center text-center">
+          <p class="gerency-welcome">Welcome... Username</p>
+        </div>
+        <div class="d-flex justify-content-between">
+        <div class="buttons-graphics">
+          <button @click="graphics = 'week'" class="btn btn-graphics"> Sales For Week </button>
+          <button @click="graphics = 'month'" class="btn btn-graphics">Sales For Month</button>
+          <button @click="graphics = 'year'" class="btn btn-graphics">Sales By Year</button>
+        </div>
+        <div class="buttons-graphics-rigth">
+          <button @click="table = 'log'" class="btn btn-graphics">Work Hours</button>
+          <button @click="table = 'singin'" class="btn btn-graphics">Add To Staff</button>
+        </div>
+      </div>
+        <div class="conteiner-desk">
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'week'" class="graphics">
+                <canvas id="weekChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'month'" class="graphics">
+                <canvas id="monthChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'year'" class="graphics">
+                <canvas id="annualChart"></canvas>
+              </div>
+            </div>
+          </div>
+        
+
+      <div class="w-50">
+        
+        <table class="table table-dark table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">Employees</th>
+              <th class="text-center" scope="col">Check-in time</th>
+              <th class="text-center" scope="col">Break</th>
+              <th class="text-center" scope="col">Departure time</th>
+              <th class="text-center" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-gerency">
+            <tr>
+              <td>Yaki Siera</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Mark Kako</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Yoko Ono</td>
+              <td>10:30 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-x" style="color: #CE1515;"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+      </template>
+
+
+    </main> 
+
+
+
+    <footer class="footer pt-4 mt-5 pb-5">
+      <div class="conteiner-footer">
+        <div class="mb-3 title">CONTACT US</div>
+        <div class="paragraph-footer mb-1"><i class="bi bi-facebook me-2"></i>Facebook</div>
+        <div class="paragraph-footer mb-1"><i class="bi bi-instagram me-2"></i>Instagram</div>
+        <div class="paragraph-footer"><i class="bi bi-whatsapp me-2"></i>WhatsApp</div>
+      </div>
+      <div class="conteiner-footer">
+        <div class="title mb-3">ADDRESS</div>
+        <button class="title-footer"></button>
+        <!-- <div class=" paragraph-footer">305 Park Pl, Lincoln, IL 62656, EE. UU.</div> -->
+      </div>
+      <div class="conteiner-footer">
+        <div class="title mb-3">STAFF ACCOUNT</div>
+        <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
+      </div>
+
+  </footer>
+  
+ </div>
+  <!-- CHART.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+    crossorigin="anonymous"></script>
+
+  <!-- VUE.JS -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>
