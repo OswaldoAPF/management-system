@@ -82,9 +82,6 @@ createApp({
         this.cart.total += this.cart.price
         this.totalPrice = this.totalPrice + shoe.total
       }
-
-      console.log(this.cart)
-      console.log(this.shoes)
     },
 
 
