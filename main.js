@@ -6,10 +6,11 @@ const app = Vue.createApp({
       cart: [],
       totalPrice: 0,
       openModalNav: false,
-      page: "desk",
+      page: "home",
       test: [1, 12, 6, 9, 12, 3, 9],
       graphics: "month",
-      table: "log"
+      table: "log",
+      navOpen: false,
     };
 
   },
