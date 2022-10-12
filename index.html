@@ -34,7 +34,7 @@
                 <button v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
                 <div class="container-nav-carrito">
                   <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                  aria-controls="offcanvasRight">Carrito<div class="line-hover"></div></button>
+                  aria-controls="offcanvasRight"><i class="bi bi-cart4"></i><div class="line-hover"></div></button>
                 </div>
               </div>
               <button class="text-light fs-1 btn-nav-close" @click="openNav"><i class="bi bi-file-arrow-up"></i></button>
@@ -98,7 +98,9 @@
                     <h2><i>to</i></h2>
                     <h2>That Shoes</h2>
                   </div>
-                  <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
+                  <div class="container-img-portada">
+                    <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
+                  </div>
                 </div>
 
                 

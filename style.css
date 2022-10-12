@@ -52,6 +52,10 @@ nav{
     right: 10px;
 }
 
+.container-nav-carrito button{
+    font-size: 30px;
+}
+
 
 .container-nav{
     display: flex;
@@ -257,6 +261,17 @@ main{
     color: brown;
 }
 
+.container-img-portada{
+    display:flex;
+    width: 100%;
+}
+
+.container-img-portada img{
+    width: 100%;
+}
+
+
+
 /* FOOTER */
 
 footer{
@@ -439,6 +454,30 @@ footer{
         font-size: 30px;
         border-radius: 5px;
     }
+
+    
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute;
+        padding: 0px 10px; 
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 80%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
     
 
 }
