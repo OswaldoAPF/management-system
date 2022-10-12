@@ -68,7 +68,7 @@
               <h5 class="card-title fw-bold">{{product.title}}</h5>
               <p class="card-text">Quantity: {{product.inCart}}</p>
               <p class="card-text">${{product.total}}</p>
-              <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+              <button class="btn btn-sacar btn-dark " @click="deleteCartProduct(product)">Remove of cart</button>
             </div>
           </div>
           <div v-else></div>
@@ -76,7 +76,7 @@
       </div>
       <div class="d-flex justify-content-center flex-column align-items-center border-top">
         <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-        <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+        <button @click="buy" class="btn w-75 btn-success btn-comprar fw-bold mb-2" type="button">Buy!</button>
       </div>
     </div>
 
@@ -103,14 +103,14 @@
             <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
             <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
 
-            <div>
-              <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end w-75"
+            <div class="col-12 d-flex justify-content-between">
+              <button v-if="shoe.stock > 0" class="btn btn-dark justify-self-end col-10"
                 v-on:click="addToCart(shoe)">Add to
                 cart</button>
-              <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
+              <button href="#" v-if="shoe.stock == 0" class="btn btn-dark col-10"  disabled>No Stock</button>
 
-              <button class="w-25 heart" v-if="shoe.fav === false" @click="addToFav(shoe)">🤍</button>
-              <button class="w-25 heart" v-if="shoe.fav === true" @click="addToFav(shoe)">🧡</button>
+              <button class=" heart col-2" v-if="shoe.fav === false" @click="addToFav(shoe)">🤍</button>
+              <button class=" heart col-2" v-if="shoe.fav === true" @click="addToFav(shoe)">🧡</button>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@
             <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
 
             <div>
-              <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end w-75"
+              <button v-if="shoe.stock > 0" class="btn btn-dark justify-self-end w-75"
                 v-on:click="addToCart(shoe)">Add to cart</button>
               <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
               <button class="w-25 heart" @click="addToFav(shoe)">🧡</button>
@@ -154,7 +154,7 @@
 
     <!-- CONTACT -->
     <template v-if="page == 'contact'">
-      <h1 class="text-light text-center pb-2 mb-4">CONTACT</h1>
+      <h1 class="text-secondary text-center mb-5">CONTACT</h1>
 
       <section class="d-flex text-center justify-content-evenly flex-wrap">
         <div class="d-flex flex-column col-lg-4 col-sm-12">
@@ -191,7 +191,7 @@
             <h2 class="text-light text-start">Our location</h2>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5128.456813210446!2d-89.37398210509205!3d40.155676667420515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880b27c56dbb1873%3A0xc65e425bcc0f416c!2s305%20Park%20Pl%2C%20Lincoln%2C%20IL%2062656%2C%20EE.%20UU.!5e0!3m2!1ses-419!2sar!4v1665544663781!5m2!1ses-419!2sar"
-              width="600" height="450" style="border:0; border-radius: 5px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" allowfullscreen="" loading="lazy"
+              width="500" height="400" style="border:0; border-radius: 5px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
               
               <div class="bg-black" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
@@ -228,6 +228,11 @@
 
   </footer>
 
+
+  <!-- SWEET ALERT -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
   <!-- BOOTSTRAP -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

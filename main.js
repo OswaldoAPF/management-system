@@ -26,10 +26,12 @@ createApp({
 
 
     this.favShoes = JSON.parse(localStorage.getItem("fav")) || []
+    this.cart = JSON.parse(localStorage.getItem("cart")) || []
   },
 
   methods: {
 
+    //------------FILTERS-------------------------------
     printAll: function () {
       this.allShoes = []
       this.allShoes = this.shoes
@@ -59,34 +61,46 @@ createApp({
 
     // -------------------CART----------------------------- 
     addToCart(shoe) { //BENJA
-      let boolean = this.cart.some(e => e.id === shoe.id) //
-      console.log(boolean)
 
-      if (boolean) { //si boleano es true, modifica propiedades del carrito, no modificar, funciona bien
+      //some nos da true si encuentra alguno que coincida con la condicion
+      //En este caso se busca que en el array cart busque en sus objetos la propiedad "id" y si coincide con el objeto que viene por parámetro, de true, y sino false.
+      let boolean = this.cart.some(e => e.id === shoe.id)
+
+      //Creamos un condicional para hacer diferentes cosas, depentiendo de si ya existe o no el mismo objeto que viene por parametro dentro del array de carts
+
+      //If boolean is true, se recorre el array de cart donde especificamente al objeto de cart con la propiedad id que cocincide con el objeto que viene por parametro, se le modifica, en +1 inCart, en -1 el stock, se acumula el valor del total con el valor del precio del producto.
+      if (boolean) {
         this.cart.forEach(e => {
           if (e.id === shoe.id) {
             e.inCart++
             e.stock--
             e.total += e.price
-            //this.cart.inCart++ //activar si hay bugs en el carrito
-            //this.cart.stock--
             this.totalPrice += shoe.price
           }
         })
+
+        //Si boolean es false, and shoe.stock es mayor a 0, al array cart como no existe ese objeto que viene como parametro se lo pusheamos, y en el array shoe, modificamos el stock y demas.
       } else if (boolean === false && shoe.stock > 0) {
-        this.cart.push(shoe) //si es falso añade el producto al carrito
+        this.cart.push(shoe)
         shoe.inCart++
         shoe.stock--
         shoe.total = shoe.price
+
+/*         this.shoes.inCart++
+        this.shoes.stock-- */
+        
+
         this.cart.inCart++
         this.cart.stock--
         this.cart.total += this.cart.price
         this.totalPrice = this.totalPrice + shoe.total
       }
 
-      console.log(this.cart)
-      console.log(this.shoes)
+      localStorage.setItem("cart", JSON.stringify(this.cart))
+      this.cart = JSON.parse(localStorage.getItem("cart"))
     },
+
+
     deleteCartProduct(product) {
       //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO, en proceso...
       if (product.inCart > 1) {
@@ -104,6 +118,9 @@ createApp({
         this.totalPrice -= product.price
       }
       productIndex = null
+
+/*       localStorage.setItem("cart", JSON.stringify(this.cart))
+      this.cart = JSON.parse(localStorage.getItem("cart")) */
     },
     buy() {
       console.log(this.shoes[0])
@@ -146,7 +163,6 @@ createApp({
       this.openModalNav = false
       this.favShoes = this.favShoes
       this.page = "fav"
-
     },
 
   }
