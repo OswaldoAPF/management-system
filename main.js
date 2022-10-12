@@ -23,9 +23,9 @@ createApp({
         this.shoes = res
       })
       .catch(err => console.log(err))
-      
-       
-    this.favShoes = JSON.parse(localStorage.getItem("fav")) || []  
+
+
+    this.favShoes = JSON.parse(localStorage.getItem("fav")) || []
   },
 
   methods: {
@@ -37,7 +37,7 @@ createApp({
     },
 
     printNike: function () {
-      this.allShoes = [] 
+      this.allShoes = []
       this.allShoes = this.shoes.filter(e => e.category === "nike")
       this.openModalNav = false
       this.page = "nike"
@@ -57,7 +57,8 @@ createApp({
       this.page = "puma"
     },
 
-    addToCart(shoe) {
+    // -------------------CART----------------------------- 
+    addToCart(shoe) { //BENJA
       let boolean = this.cart.some(e => e.id === shoe.id) //
       console.log(boolean)
 
@@ -82,9 +83,10 @@ createApp({
         this.cart.total += this.cart.price
         this.totalPrice = this.totalPrice + shoe.total
       }
+
+      console.log(this.cart)
+      console.log(this.shoes)
     },
-
-
     deleteCartProduct(product) {
       //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO, en proceso...
       if (product.inCart > 1) {
@@ -103,18 +105,30 @@ createApp({
       }
       productIndex = null
     },
+    buy() {
+      console.log(this.shoes[0])
+      let lenght = this.shoes.length;
+      for (let a = 0; a < lenght; a++) {
+        this.shoes[a].inCart = 0
+      }
+      this.cart = []
+      this.totalPrice = 0
+
+      //this.shoes.inCart=0
+      alert("Thaks for the purchase")
+    },
 
     // --------------------FAVORITES---------------------
-    addToFav: function(product){
-      if(!this.favShoes?.some(shoe => shoe.title === product.title)){
+    addToFav: function (product) {
+      if (!this.favShoes?.some(shoe => shoe.title === product.title)) {
 
         this.favShoes.push(product)
         let shoe = this.shoes.filter(e => e.id === product.id)
         shoe[0].fav = true
-        
 
 
-      }else{
+
+      } else {
         let shoe = this.shoes.filter(e => e.id === product.id)
         console.log(shoe);
         shoe[0].fav = false
@@ -122,13 +136,13 @@ createApp({
         this.favShoes = this.favShoes?.filter(shoe => shoe.title !== product.title)
       }
 
-       localStorage.setItem("fav", JSON.stringify(this.favShoes))
+      localStorage.setItem("fav", JSON.stringify(this.favShoes))
       this.favShoes = JSON.parse(localStorage.getItem("fav"))
-      
+
       console.log(product);
     },
 
-    printFav: function(){
+    printFav: function () {
       this.openModalNav = false
       this.favShoes = this.favShoes
       this.page = "fav"
