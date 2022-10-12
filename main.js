@@ -6,8 +6,10 @@ createApp({
       shoes: [],
       allShoes: [],
       carrito: [],
-      openModalNav: true,
-      
+      openModalNav: false,
+      page: "home",
+      staff: true,
+      navOpen: false
     }
   },
 
@@ -19,6 +21,14 @@ createApp({
   },
 
   methods:{
+    openNav() {
+      if (this.navOpen === false) {
+        this.navOpen = true
+      }
+      else {
+        this.navOpen = false
+      }
+    },
 
     imprimirAll: function(){
       this.allShoes = []
@@ -47,3 +57,8 @@ createApp({
     }
   }
 }).mount('#app')
+
+
+window.addEventListener("load", function(){
+  document.getElementById("inicio").classList.toggle("active-welcome")
+})

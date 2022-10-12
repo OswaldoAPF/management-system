@@ -4,37 +4,54 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <title>Document</title>
 </head>
-<body class="bg-dark"> 
+<body> 
     <div id="app">
 
         <div :class="{'openNav' : openModalNav}" class="modal-nav">
-            <button class="close-modal-nav" @click="openModalNav = false">X</button>
-
-              <button class="button-nav" @click="imprimirNike"><img src="./assets/img/modeloNike.jpg"><div class="button-span-one"><span><img src="./assets/img/nikeBlanco.png"></span></div></button>
-              <button class="button-nav" @click="imprimirAdidas"><img src="./assets/img/modeloAdidas.jpg"><div class="button-span-two"><span><img class="img-dif" src="./assets/img/adidasBlanco.png"></span></div></button>
-              <button class="button-nav" @click="imprimirAll"><img src="./assets/img/modeloPuma.jpg"><div class="button-span-three"><span><img src="./assets/img/pumaBlanco.png"></span></div></button>
+          <button class="close-modal-nav" @click="openModalNav = false">X</button>
+          <div class="container-buttons-nav">
+            <button class="button-nav" @click="printNike"><img class="img-nav" src="./assets/img/modeloNike.jpg"><div class="button-span-one"><span><img src="./assets/img/nikeBlanco.png"></span></div></button>
+            <button class="button-nav" @click="printAdidas"><img class="img-nav" src="./assets/img/modeloAdidas.jpg"><div class="button-span-two"><span><img class="img-dif" src="./assets/img/adidasBlanco.png"></span></div></button>
+            <button class="button-nav" @click="printPuma"><img class="img-nav" src="./assets/img/modeloPuma.jpg"><div class="button-span-three"><span><img src="./assets/img/pumaBlanco.png"></span></div></button>
+          </div>
+          <button class="button-header" @click="printAll">Alls<div class="line-hover"></div></button>
+          <button class="button-header" @click="">Your Favorites<div class="line-hover"></div></button>
 
         </div>
         
         <header>
-            <nav>
+          <div class="container-nav">
+            <img src="./assets/img/logo.png" alt="logo">
+            <nav :class="{'open-modal-nav' : navOpen}">
+              <div class="container-nav-prin">
                 <button class="button-header">Home<div class="line-hover"></div></button>
                 <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
                 <button class="button-header">Contact<div class="line-hover"></div></button>
-                <button class="button-header">Desk<div class="line-hover"></div></button>
+                <button v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
+                <div class="container-nav-carrito">
+                  <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight">Carrito<div class="line-hover"></div></button>
+                </div>
+              </div>
+              <button class="text-light fs-1 btn-nav-close" @click="openNav"><i class="bi bi-file-arrow-up"></i></button>
             </nav>
-
-            
+          </div>
+          
+          
+          <button :class="{'active' : navOpen}" @click="openNav" class="btn-burguer">
+            <span class="line-animation"></span>
+            <span class="line-animation"></span>
+            <span class="line-animation"></span>
+          </button>
         </header>
         
         
         <main>
 
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-              aria-controls="offcanvasRight">Carrito</button>
         
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
               <div class="offcanvas-header">
@@ -46,36 +63,75 @@
               </div>
             </div>
         
-        
-            <section class="d-flex flex-wrap justify-content-center gap-5">
-              <h1 class="w-100 text-center text-white">NIKE</h1>
-              <template v-for="shoe in allShoes">
-        
-                <div class="card" style="width: 18rem;">
-                  <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
-                    v-if="shoe.cantidad > 0 && shoe.cantidad < 5">¡Pocas Unidades!</p>
-                  <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
-                    v-if="shoe.cantidad == 0"></p>
-                  <img :src="shoe.image" class="card-img-top" alt="...">
-                  <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{shoe.title}}</h5>
-                    <p class=" ">${{shoe.price}}</p>
-        
-                    <p v-if="shoe.cantidad > 0" class="card-text"> Unidades disponibles: {{shoe.cantidad}}</p>
-                    <p v-if="shoe.cantidad == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
-        
-                    <a href="#" v-if="shoe.cantidad > 0" class="btn btn-dark justify-self-end">Add to cart</a>
-                    <a href="#" v-if="shoe.cantidad == 0" class="btn btn-dark">Add to cart</a>
+            <template v-if="page === 'shoes'">
+
+              <section class="d-flex flex-wrap justify-content-center gap-5">
+                <h1 class="w-100 text-center text-white">NIKE</h1>
+                <template v-for="shoe in allShoes">
+          
+                  <div class="card" style="width: 18rem;">
+                    <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
+                      v-if="shoe.cantidad > 0 && shoe.cantidad < 5">¡Pocas Unidades!</p>
+                    <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
+                      v-if="shoe.cantidad == 0"></p>
+                    <img :src="shoe.image" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">{{shoe.title}}</h5>
+                      <p class=" ">${{shoe.price}}</p>
+          
+                      <p v-if="shoe.cantidad > 0" class="card-text"> Unidades disponibles: {{shoe.cantidad}}</p>
+                      <p v-if="shoe.cantidad == 0" class="card-text"> Unidades disponibles: SIN STOCK</p>
+          
+                      <a href="#" v-if="shoe.cantidad > 0" class="btn btn-dark justify-self-end">Add to cart</a>
+                      <a href="#" v-if="shoe.cantidad == 0" class="btn btn-dark">Add to cart</a>
+                    </div>
                   </div>
+                </template>
+              </section>
+            </template>
+
+            <template v-if="page === 'home'">
+              <section class="container-home">
+                <div class="container-portada">
+                  <div id="inicio" class="container-welcome">
+                    <h2><i>Welcome</i></h2>
+                    <h2><i>to</i></h2>
+                    <h2>That Shoes</h2>
+                  </div>
+                  <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
                 </div>
-              </template>
-            </section>
-        
+
+                
+                <div class="p-5">
+                  <p class="fw-bold fs-5">
+                    a little about us
+                  </p>
+                  <p>
+                    We are a store created by entrepreneurs looking to bring to 
+                    your door the best quality shoes from the top brands in the world.
+                  </p>
+                  <p>
+                    We offer speed and efficiency in the purchase and delivery of your order
+                  </p>
+                </div>
+                
+
+              </section>
+              <div class="container-brands">
+                <h4>Brands</h4>
+                <div>
+                  <img src="./assets/img/nike.png" alt="">
+                  <img src="./assets/img/adidas.png" alt="">
+                  <img src="./assets/img/logo-puma.png" alt="">
+                </div>
+              </div>
+            </template>
+            
           </main> 
-        
-        
-        <footer>
-    
+          
+          
+          <footer>
+            
         </footer>
     </div>
 
