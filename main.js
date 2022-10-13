@@ -199,7 +199,7 @@ const app = Vue.createApp({
       Swal.fire({
         title:"Send!",
         width:"40vw"
-        //html:"<b class='buyAlert'> </b>"
+        //html:"<b class='buyAlert'> </b>" //para ponerle clase y modificarlo en css
       })
     }
   }
