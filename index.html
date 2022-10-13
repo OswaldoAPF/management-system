@@ -121,20 +121,21 @@
             <template v-if="page === 'home'">
               <section class="container-home">
                 <div class="container-portada">
-                  <div id="inicio" class="container-welcome">
-                    <h2><i>Welcome</i></h2>
-                    <h2><i>to</i></h2>
-                    <h2>That Shoes</h2>
+                  <div id="inicio" class="container-welcome p-4 bg-black">
+                    <h2 class="fw-bolder text-center pt-3 fs-4 text-light" style="font-family: Arial;">WELCOME TO</h2> 
+                    <!-- <h2><i>to</i></h2> -->
+                    <img width="270" src="./assets/img/logo.png" alt="logo">
+                    
                   </div>
                   <div class="container-img-portada">
                     <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
                   </div>
                 </div>
 
-                
-                <div class="p-5">
-                  <p class="fw-bold fs-5 text-light">
-                    a little about us
+                <div class="d-flex">
+                <div class="p-5 col-6">
+                  <p class="fw-bold fs-5 color-subtitle">
+                    A little about us
                   </p>
                   <p class="text-light">
                     We are a store created by entrepreneurs looking to bring to 
@@ -144,17 +145,18 @@
                     We offer speed and efficiency in the purchase and delivery of your order
                   </p>
                 </div>
-                
-
-              </section>
-              <div class="container-brands">
-                <h4 class="text-light">Brands</h4>
-                <div>
-                  <img src="./assets/img/nike.png" alt="">
-                  <img src="./assets/img/adidas.png" alt="">
-                  <img src="./assets/img/logo-puma.png" alt="">
+                <div class="container-brands col-6 color-subtitle">
+                  <h4 class="fw-bold">Brands</h4>
+                  <div>
+                    <img src="./assets/img/nikeBlanco.png" alt="">
+                    <img src="./assets/img/adidasBlanco.png" alt="">
+                    <img src="./assets/img/pumaBlanco.png" alt="">
+                  </div>
                 </div>
               </div>
+
+              </section>
+
             </template>
             
           
