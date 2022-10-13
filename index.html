@@ -13,7 +13,6 @@
 </head>
 <body> 
     <div id="app">
-      <h1>HOLALAAAAAA</h1>
         <div :class="{'openNav' : openModalNav}" class="modal-nav">
           <button class="close-modal-nav" @click="openModalNav = false">X</button>
           <div class="container-buttons-nav">
@@ -293,23 +292,23 @@
             <h3 class="fw-bold p-4 fs-4">How can we help? <br> Complete the form and we will contact you shortly.</h3>
 
             <label class="w-75 fw-semibold ">Name and Surname <br>
-              <input type="text" class="w-100 border">
+              <input type="text" required class="w-100 border">
             </label>
 
             <label class="w-75 py-3 fw-semibold ">Email <br>
-              <input type="email" class="w-100 border" >
+              <input type="email" required class="w-100 border" >
             </label>
 
             <label class="w-75 fw-semibold ">Phone <br>
-              <input type="text"  class="w-100 border" >
+              <input type="text" required class="w-100 border" >
             </label>
 
             <label class="w-75 py-3 fw-semibold ">Consultation <br>
-              <textarea cols="30" class="w-100 border" rows="5"></textarea>
+              <textarea cols="30" required class="w-100 border" rows="5"></textarea>
             </label>
 
             <label class="w-100 m-auto d-flex justify-content-center mb-3">
-              <button type="submit" class="btn btn-dark my-3 w-50">Send</button>
+              <button type="reset" required class="btn btn-dark my-3 w-50" @click="contactAlert()">Sent</button>
             </label>
           </form>
         </div>
@@ -373,6 +372,7 @@
 
   <!-- VUE.JS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./main.js"></script>
 
 
