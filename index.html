@@ -80,7 +80,7 @@
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
               <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
               <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button" v-if="cart.length">Buy!</button>
-              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button" v-else disabled>Buy!</button>
+              <button class="btn w-75 btn-comprar fw-bold mb-2" type="button" v-else disabled>Buy!</button>
             </div>
           </div>
 
