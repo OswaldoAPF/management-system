@@ -31,10 +31,10 @@
             <img src="./assets/img/logo2.png" alt="logo">
             <nav :class="{'open-modal-nav' : navOpen}">
               <div class="container-nav-prin">
-                <button @click="page = 'home'" class="button-header">Home<div class="line-hover"></div></button>
+                <button @click="page = 'home', navOpen = false" class="button-header">Home<div class="line-hover"></div></button>
                 <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
-                <button @click="page = 'contact'" class="button-header">Contact<div class="line-hover"></div></button>
-                <button @click="page = 'desk'" v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
+                <button @click="page = 'contact', navOpen = false" class="button-header">Contact<div class="line-hover"></div></button>
+                <button @click="page = 'desk', navOpen = false" v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
                 <div class="container-nav-carrito">
                   <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                   aria-controls="offcanvasRight"><i class="bi bi-cart4"></i><div class="line-hover"></div></button>
