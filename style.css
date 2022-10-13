@@ -9,7 +9,7 @@ body{
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(227, 227, 252) !important;
+    background-color: rgb(252, 227, 227) !important;
 }
 
 #app{
@@ -589,6 +589,7 @@ main{
         font-size: 30px;
         border-radius: 5px;
     }
+
     
     .container-portada{
         width: 100%;
@@ -600,11 +601,12 @@ main{
     .container-portada .container-welcome{
         position: absolute;
         padding: 0px 10px; 
+        left: 200px;
     }
 
     .container-img-portada{
         display:flex;
-        width: 80%;
+        width: 100%;
         justify-content: center;
     }
     
@@ -725,3 +727,17 @@ main{
 
     }
 }
+
+
+
+
+/* FORM */
+.form-contact{
+    border-radius: 5px;
+    
+}
+
+.heart{
+    cursor: pointer;
+}
+
