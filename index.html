@@ -13,7 +13,6 @@
 </head>
 <body> 
     <div id="app">
-
         <div :class="{'openNav' : openModalNav}" class="modal-nav">
           <button class="close-modal-nav" @click="openModalNav = false">X</button>
           <div class="container-buttons-nav">
@@ -80,7 +79,8 @@
             </div>
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
               <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 color-buttons" type="button">Buy!</button>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 color-buttons" type="button" v-if="cart.length">Buy!</button>
+              <button class="btn w-75 btn-comprar fw-bold mb-2 color-buttons" type="button" v-else disabled>Buy!</button>
             </div>
           </div>
 
@@ -298,23 +298,23 @@
             <h3 class="fw-bold p-4 fs-4">How can we help? <br> Complete the form and we will contact you shortly.</h3>
 
             <label class="w-75 fw-semibold ">Name and Surname <br>
-              <input type="text" class="w-100 border">
+              <input type="text" required class="w-100 border" v-bind="">
             </label>
 
             <label class="w-75 py-3 fw-semibold ">Email <br>
-              <input type="email" class="w-100 border" >
+              <input type="email" required class="w-100 border" >
             </label>
 
             <label class="w-75 fw-semibold ">Phone <br>
-              <input type="text"  class="w-100 border" >
+              <input type="text" required class="w-100 border" >
             </label>
 
             <label class="w-75 py-3 fw-semibold ">Consultation <br>
-              <textarea cols="30" class="w-100 border" rows="5"></textarea>
+              <textarea cols="30" required class="w-100 border" rows="5"></textarea>
             </label>
 
             <label class="w-100 m-auto d-flex justify-content-center mb-3">
-              <button type="submit" class="btn color-buttons fw-bold  my-3 w-50">Send</button>
+              <button type="reset" class="btn color-buttons fw-bold my-3 w-50" @click="contactAlert()">Send</button>
             </label>
           </form>
         </div>
@@ -378,6 +378,7 @@
 
   <!-- VUE.JS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./main.js"></script>
 
 

@@ -158,7 +158,12 @@ const app = Vue.createApp({
     localStorage.removeItem('cart');
     localStorage.removeItem('totalPrice');
     
-    alert("Thaks for the purchase")
+    //alert("Thaks for the purchase")
+    Swal.fire({
+      title:"Thank you!",
+      //width:"40vw",
+      html:"<template class='buyAlert'> </template>"
+    })
   },
 
     // --------------------FAVORITES---------------------
@@ -188,7 +193,13 @@ const app = Vue.createApp({
       this.page = "fav"
 
     },
+     // --------------------CONTACT ---------------------
+    contactAlert(){
+      Swal.fire({
+        title:"Sent!",
 
+      })
+    }
   }
 
   
