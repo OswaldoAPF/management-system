@@ -2,12 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
 }
 
 body{
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgb(252, 227, 227) !important;
 }
 
 #app{
@@ -27,36 +29,79 @@ button{
 
 header{
     width: 100%;
-    height: 60px;
+    height: 70px;
     background-color: black;
+    display: flex;
+    justify-content: space-between;
 }
 
-header nav{
+nav{
+    width: 100%;
     display: flex;
-    justify-content: end;
+    align-items: center;
     padding: 10px;
 }
 
-header nav .button-header{
+.container-nav-prin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-nav-carrito{
+    position: absolute;
+    right: 10px;
+}
+
+.container-nav-carrito button{
+    font-size: 30px;
+}
+
+
+.container-nav{
+    display: flex;
+    justify-content: center;
+}
+
+.line-animation{
+    height: 1.5px;
+    width: 25px;
+    background-color: white;
+    transition: all ease 0.5s;
+}
+
+.btn-burguer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0px 20px;
+    display: none;
+}
+
+.button-header{
     padding: 10px;
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     cursor: pointer;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .line-hover{
     width: 100%;
     height: 2px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 2px;
     position: relative;
     right: 150%;
     transition: all ease 0.3s;
 }
 
-header nav button:hover .line-hover{
+.button-header:hover .line-hover{
     position: relative;
     right: 0;
     transition: all ease 0.3s;
@@ -68,8 +113,16 @@ header nav button:hover .line-hover{
     width: 100%;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.833);
-    top: -100%;
+    top: -150%;
     transition: all ease 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-buttons-nav{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,85 +133,42 @@ header nav button:hover .line-hover{
 .modal-nav .button-nav{
     color: black;
     background-color: white;
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all ease 0.3s;
     border-radius: 5px;
-
+    overflow: hidden;
 }
 
-.button-nav:hover{
-    width: 350px;
-    height: 250px;
-    transition: all ease 0.3s;
-}
+
 
 .button-nav div{
     position: absolute;
-    opacity: 0;
-}
-
-.button-nav:hover .button-span-one{
-    position: absolute;
     opacity: 1;
-    width: 350px;
-    height: 250px;
-    transition: all ease 0.3s;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.623);
+    width: 250px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 3;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.797);
-    font-size: 30px;
-    border-radius: 5px;
 }
 
-.button-nav:hover .button-span-two{
-    position: absolute;
-    opacity: 1;
-    width: 350px;
-    height: 250px;
-    transition: all ease 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.797);
-    font-size: 30px;
-    border-radius: 5px;
-}
-
-.button-nav:hover .button-span-three{
-    position: absolute;
-    opacity: 1;
-    width: 350px;
-    height: 250px;
-    transition: all ease 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.797);
-    font-size: 30px;
-    border-radius: 5px;
-}
 
 .button-nav img{
     width: 100%;
     height: 100%;
     border-radius: 5px;
     z-index: 2;
+    transition: all ease 0.3s;
 }
 
 .button-nav span img{
-    width: 150px;
-    height: 90px;
+    width: 120px;
+    height: 60px;
 }
 
 .openNav{
@@ -186,15 +196,81 @@ header nav button:hover .line-hover{
 }
 
 .img-dif{
-    width: 150px;
-    height: 100px !important;
+    width: 100px;
+    height: 80px !important;
 }
+
+.btn-nav-close{
+    position: relative;
+    bottom: 30px;
+    display: none;
+}
+
+.container-brands{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px;
+}
+
+.container-brands div{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.container-brands img:nth-child(1){
+    width: 100px;
+    height: 50px;
+    opacity: 0.5;
+    margin-top: 10px;
+}
+
+.container-brands img:nth-child(2){
+    width: 90px;
+    height: 60px;
+    opacity: 0.5;
+}
+.container-brands img:nth-child(3){
+    width: 100px;
+    height: 90px;
+    opacity: 0.5;
+    padding-bottom: 10px;
+}
+
 /* MAIN */
 
 main{
     width: 100%;
-
 }
+
+
+.container-portada{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-portada .container-welcome{
+    position: absolute;
+    padding: 0px 10px; 
+}
+
+
+.container-welcome h2:nth-child(3){
+    color: brown;
+}
+
+.container-img-portada{
+    display:flex;
+    width: 100%;
+}
+
+.container-img-portada img{
+    width: 100%;
+}
+
+
 
 /* FOOTER */
 .footer {
@@ -288,18 +364,72 @@ main{
     transition: 0.5s;
 }
 
+/* Gerency */
+.conteiner-desk{
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 50px;
+    
+}
+.graphics{
+    width: 500px;
+}
+.gerency-welcome{
+    color: aliceblue;
+    letter-spacing: .2rem;
+    font-size: 28px;
+    margin: 10px;
+    width: 80%;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.633);
+
+}
+.gerency-welcome:hover{
+    color: brown;
+    transition: .5s;
+}
+.buttons-graphics{
+    margin-left: 130px;
+}
+.btn-graphics{
+    background-color: rgb(0, 0, 0);
+    margin: 10px;
+    padding: 5px;
+    color: aliceblue;
+}
+.btn-graphics:hover{
+    background-color: rgb(0, 0, 0);
+    color: aliceblue;
+    border: 2px solid brown;
+    margin: 10px;
+    padding: 5px;
+}
+
+.tbody-gerency tr td{
+    text-align: center;
+}
+
+.buttons-graphics-rigth{
+    margin-right: 250px;
+}
 
 /* MEDIA QUERY */
 
 @media (min-width: 768px) {
     .modal-nav{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 15px;
     }
-    
+
+    .container-buttons-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
     .modal-nav .button-nav{
         color: black;
         background-color: white;
@@ -310,12 +440,13 @@ main{
         align-items: center;
         transition: all ease 0.3s;
         border-radius: 5px;
-        
+        overflow: hidden;
     }
+
     
-    .button-nav:hover{
-        width: 300px;
-        height: 200px;
+    .button-nav:hover .img-nav {
+        width: 330px;
+        height: 230px;
         transition: all ease 0.3s;
     }
     
@@ -327,15 +458,15 @@ main{
     .button-nav:hover .button-span-one{
         position: absolute;
         opacity: 1;
-        width: 300px;
-        height: 200px;
+        width: 250px;
+        height: 150px;
         transition: all ease 0.3s;
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 3;
         color: white;
-        background-color: rgba(0, 0, 0, 0.797);
+        background-color: rgba(0, 0, 0, 0.623);
         font-size: 30px;
         border-radius: 5px;
     }
@@ -343,8 +474,8 @@ main{
     .button-nav:hover .button-span-two{
         position: absolute;
         opacity: 1;
-        width: 300px;
-        height: 200px;
+        width: 250px;
+        height: 150px;
         transition: all ease 0.3s;
         display: flex;
         justify-content: center;
@@ -359,8 +490,8 @@ main{
     .button-nav:hover .button-span-three{
         position: absolute;
         opacity: 1;
-        width: 300px;
-        height: 200px;
+        width: 250px;
+        height: 150px;
         transition: all ease 0.3s;
         display: flex;
         justify-content: center;
@@ -371,12 +502,16 @@ main{
         font-size: 30px;
         border-radius: 5px;
     }
+    .modal-nav .button-header{
+        font-size: 25px;
+    }
+
 }
 
 @media (min-width: 1024px) {
     .modal-nav{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 35px;
@@ -385,20 +520,26 @@ main{
     .modal-nav .button-nav{
         color: black;
         background-color: white;
-        width: 300px;
-        height: 200px;
+        width: 350px;
+        height: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all ease 0.3s;
         border-radius: 5px;
-        
+        overflow: hidden;
+
     }
     
-    .button-nav:hover{
-        width: 350px;
-        height: 250px;
+    .button-nav:hover .img-nav {
+        width: 430px;
+        height: 330px;
         transition: all ease 0.3s;
+    }
+    
+    .button-nav div{
+        position: absolute;
+        opacity: 0;
     }
     
     .button-nav:hover .button-span-one{
@@ -412,7 +553,7 @@ main{
         align-items: center;
         z-index: 3;
         color: white;
-        background-color: rgba(0, 0, 0, 0.797);
+        background-color: rgba(0, 0, 0, 0.623);
         font-size: 30px;
         border-radius: 5px;
     }
@@ -448,7 +589,125 @@ main{
         font-size: 30px;
         border-radius: 5px;
     }
+
+    
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute;
+        padding: 0px 10px; 
+        left: 200px;
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
+    
+
 }
+
+@media (max-width: 768px) {
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        position: fixed;
+        top: -150%;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.849);
+        width: 100%;
+        height: calc(100% - 70px);
+        transition: all ease 0.5s;
+    }
+
+    .container-nav-prin{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .open-modal-nav{
+        position: fixed;
+        top: 70px;
+        right: 0;
+        transition: all ease 0.5s;
+        z-index: 5;
+
+    }
+
+    .btn-burguer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 7px;
+        margin: 0px 20px;
+        overflow: hidden;
+        z-index: 5;
+    }
+
+    .active .line-animation:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .active .line-animation:nth-child(2){
+        transform: translateX(-100px);
+    }
+
+    .active .line-animation:nth-child(3){
+        transform: translateY(-9.5px) rotate(-45deg);
+    }
+        
+    
+    .button-header{
+        padding: 10px;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        cursor: pointer;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .line-hover{
+        width: 100%;
+        height: 2px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 2px;
+        position: relative;
+        right: 150%;
+        transition: all ease 0.3s;
+    }
+    
+    .button-header:hover .line-hover{
+        position: relative;
+        right: 0;
+        transition: all ease 0.3s;
+    }
+
+    .btn-nav-close{
+        position: relative;
+        bottom: 30px;
+        display: flex;
+
+    }
+}
+
 @media (min-width : 320px) and (max-width : 769px){
     .footer{
         display: flex;
@@ -465,11 +724,29 @@ main{
     }
     .conteiner-footer{
         margin-top: 30px;
+
     }
 }
+<<<<<<< HEAD
 /* benja */
 main #Shoes-title{
     color: white;
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
+=======
+
+
+
+
+/* FORM */
+.form-contact{
+    border-radius: 5px;
+    
+}
+
+.heart{
+    cursor: pointer;
+}
+
+>>>>>>> 1ad054ff13ad7068e4b12348453c197220aa052b

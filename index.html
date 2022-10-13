@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
-  <!-- ICONOS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <title>Document</title>
-
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+<title>Document</title>
 </head>
+<body> 
+    <div id="app">
 
-<body class="bg-dark">
-  <div id="app">
+        <div :class="{'openNav' : openModalNav}" class="modal-nav">
+          <button class="close-modal-nav" @click="openModalNav = false">X</button>
+          <div class="container-buttons-nav">
+            <button class="button-nav" @click="printNike"><img class="img-nav" src="./assets/img/modeloNike.jpg"><div class="button-span-one"><span><img src="./assets/img/nikeBlanco.png"></span></div></button>
+            <button class="button-nav" @click="printAdidas"><img class="img-nav" src="./assets/img/modeloAdidas.jpg"><div class="button-span-two"><span><img class="img-dif" src="./assets/img/adidasBlanco.png"></span></div></button>
+            <button class="button-nav" @click="printPuma"><img class="img-nav" src="./assets/img/modeloPuma.jpg"><div class="button-span-three"><span><img src="./assets/img/pumaBlanco.png"></span></div></button>
+          </div>
+          <button class="button-header" @click="printAll">Alls<div class="line-hover"></div></button>
+          <button class="button-header" @click="printFav">Your Favorites<div class="line-hover"></div></button>
 
+<<<<<<< HEAD
     <div :class="{'openNav' : openModalNav}" class="modal-nav">
       <button class="close-modal-nav" @click="openModalNav = false">X</button>
 
@@ -107,6 +115,57 @@
           </template>
           <!-- FILTRO DE KEI -->
             <template v-for="shoe in allShoes" v-if="filter===true">
+=======
+        </div>
+        
+        <header>
+          <div class="container-nav">
+            <img src="./assets/img/logo.png" alt="logo">
+            <nav :class="{'open-modal-nav' : navOpen}">
+              <div class="container-nav-prin">
+                <button @click="page = 'home'" class="button-header">Home<div class="line-hover"></div></button>
+                <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
+                <button @click="page = 'contact'" class="button-header">Contact<div class="line-hover"></div></button>
+                <button @click="page = 'desk'" v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
+                <div class="container-nav-carrito">
+                  <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"><i class="bi bi-cart4"></i><div class="line-hover"></div></button>
+                </div>
+              </div>
+              <button class="text-light fs-1 btn-nav-close" @click="openNav"><i class="bi bi-file-arrow-up"></i></button>
+            </nav>
+          </div>
+          
+          
+          <button :class="{'active' : navOpen}" @click="openNav" class="btn-burguer">
+            <span class="line-animation"></span>
+            <span class="line-animation"></span>
+            <span class="line-animation"></span>
+          </button>
+        </header>
+        
+        
+        <main>
+
+        
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                ...
+              </div>
+            </div>
+
+            <section class="d-flex flex-wrap justify-content-center gap-5" v-if="page === 'nike' || page === 'adidas' || page === 'puma' || page === 'alls'">
+      
+            <h1 class="w-100 text-center text-light" v-if="page === 'nike'">NIKE</h1>
+            <h1 class="w-100 text-center text-light" v-if="page === 'adidas'">ADIDAS</h1>
+            <h1 class="w-100 text-center text-light" v-if="page === 'puma'">PUMA</h1>
+      
+            <template v-for="shoe in allShoes">
+>>>>>>> 1ad054ff13ad7068e4b12348453c197220aa052b
               <div class="card" style="width: 18rem;">
                 <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
                   v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
@@ -116,6 +175,7 @@
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">{{shoe.title}}</h5>
                   <p class=" ">${{shoe.price}}</p>
+<<<<<<< HEAD
   
                   <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
                   <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
@@ -136,12 +196,244 @@
          <div>
           <canvas id="myChart"></canvas>
          </div>
+=======
+      
+                  <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
+                  <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
+      
+                  <div class="col-12 d-flex justify-content-between">
+                    <button v-if="shoe.stock > 0" class="btn btn-dark justify-self-end col-10"
+                      v-on:click="addToCart(shoe)">Add to
+                      cart</button>
+                    <button href="#" v-if="shoe.stock == 0" class="btn btn-dark col-10"  disabled>No Stock</button>
+      
+                    <button class=" heart col-2" v-if="shoe.fav === false" @click="addToFav(shoe)">🤍</button>
+                    <button class=" heart col-2" v-if="shoe.fav === true" @click="addToFav(shoe)">🧡</button>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </section>
+
+            <template v-if="page === 'home'">
+              <section class="container-home">
+                <div class="container-portada">
+                  <div id="inicio" class="container-welcome">
+                    <h2><i>Welcome</i></h2>
+                    <h2><i>to</i></h2>
+                    <h2>That Shoes</h2>
+                  </div>
+                  <div class="container-img-portada">
+                    <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
+                  </div>
+                </div>
+
+                
+                <div class="p-5">
+                  <p class="fw-bold fs-5 text-light">
+                    a little about us
+                  </p>
+                  <p class="text-light">
+                    We are a store created by entrepreneurs looking to bring to 
+                    your door the best quality shoes from the top brands in the world.
+                  </p>
+                  <p class="text-light">
+                    We offer speed and efficiency in the purchase and delivery of your order
+                  </p>
+                </div>
+                
+
+              </section>
+              <div class="container-brands">
+                <h4 class="text-light">Brands</h4>
+                <div>
+                  <img src="./assets/img/nike.png" alt="">
+                  <img src="./assets/img/adidas.png" alt="">
+                  <img src="./assets/img/logo-puma.png" alt="">
+                </div>
+              </div>
+            </template>
+            
+          
+          
+          
+    
+
+
+
+      <template v-if="page === 'desk'">
+        <div class="d-flex justify-content-center text-center">
+          <p class="gerency-welcome">Welcome... Username</p>
+        </div>
+        <div class="d-flex justify-content-between">
+        <div class="buttons-graphics">
+          <button @click="graphics = 'week'" class="btn btn-graphics"> Sales For Week </button>
+          <button @click="graphics = 'month'" class="btn btn-graphics">Sales For Month</button>
+          <button @click="graphics = 'year'" class="btn btn-graphics">Sales By Year</button>
+        </div>
+        <div class="buttons-graphics-rigth">
+          <button @click="table = 'log'" class="btn btn-graphics">Work Hours</button>
+          <button @click="table = 'singin'" class="btn btn-graphics">Add To Staff</button>
+        </div>
+      </div>
+        <div class="conteiner-desk">
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'week'" class="graphics">
+                <canvas id="weekChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'month'" class="graphics">
+                <canvas id="monthChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-100 d-flex justify-content-center">
+              <div v-show="graphics === 'year'" class="graphics">
+                <canvas id="annualChart"></canvas>
+              </div>
+            </div>
+          </div>
         
+
+      <div class="w-50">
+>>>>>>> 1ad054ff13ad7068e4b12348453c197220aa052b
+        
+        <table class="table table-dark table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">Employees</th>
+              <th class="text-center" scope="col">Check-in time</th>
+              <th class="text-center" scope="col">Break</th>
+              <th class="text-center" scope="col">Departure time</th>
+              <th class="text-center" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-gerency">
+            <tr>
+              <td>Yaki Siera</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Mark Kako</td>
+              <td>8:00 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+            </tr>
+            <tr>
+              <td>Yoko Ono</td>
+              <td>10:30 am</td>
+              <td>11:00 am</td>
+              <td>14:00 am</td>
+              <td><i class="bi bi-x" style="color: #CE1515;"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
       </template>
 
+      <!-- FAVS -->
+    <section v-if="page === 'fav'" class="d-flex flex-wrap justify-content-center gap-5">
+      <h1 class="w-100 text-center">NIKE</h1>
+
+      <div class="alert alert-warning h-100" v-if="favShoes.length === 0" role="alert">
+        Nothing in favorites yet!!!
+      </div>
+
+      <template v-for="shoe in favShoes">
+        <div class="card" style="width: 18rem;">
+          <p class="position-absolute top-0 start-50 translate-middle bg-light text-danger w-75 stock fw-bold text-center border rounded-5"
+            v-if="shoe.stock > 0 && shoe.stock < 5">¡Low Stock!</p>
+          <p class="position-absolute top-0 start-50 translate-middle   w-75 stock fw-bold text-center "
+            v-if="shoe.stock == 0"></p>
+          <img :src="shoe.image" class="card-img-top" alt="...">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{shoe.title}}</h5>
+            <p class=" ">${{shoe.price}}</p>
+
+            <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
+            <p v-if="shoe.stock == 0" class="card-text"> Stock left: NO STOCK</p>
+
+            <div>
+              <button v-if="shoe.stock > 0" class="btn btn-success justify-self-end w-75"
+                v-on:click="addToCart(shoe)">Add to cart</button>
+              <button href="#" v-if="shoe.stock == 0" class="btn btn-success" disabled>No Stock</button>
+              <button class="w-25 heart" @click="addToFav(shoe)">🧡</button>
+
+            </div>
+          </div>
+        </div>
+      </template>
+    </section>
 
 
-    </main>
+    <!-- CONTACT -->
+    <template v-if="page == 'contact'">
+      <h1 class="text-light text-center pb-2 mb-4">CONTACT</h1>
+
+      <section class="d-flex text-center justify-content-evenly flex-wrap">
+        <div class="d-flex flex-column col-lg-4 col-sm-12">
+          <h2 class="text-light text-start">Let's talk</h2>
+
+          <form class="d-flex flex-column text-dark bg-light form-contact align-items-center text-start">
+            <h3 class="fw-bold p-4 fs-4">How can we help? <br> Complete the form and we will contact you shortly.</h3>
+
+            <label class="w-75 fw-semibold ">Name and Surname <br>
+              <input type="text" class="w-100 border">
+            </label>
+
+            <label class="w-75 py-3 fw-semibold ">Email <br>
+              <input type="email" class="w-100 border" >
+            </label>
+
+            <label class="w-75 fw-semibold ">Phone <br>
+              <input type="text"  class="w-100 border" >
+            </label>
+
+            <label class="w-75 py-3 fw-semibold ">Consultation <br>
+              <textarea cols="30" class="w-100 border" rows="5"></textarea>
+            </label>
+
+            <label class="w-100 m-auto d-flex justify-content-center mb-3">
+              <button type="submit" class="btn btn-dark my-3 w-50">Send</button>
+            </label>
+          </form>
+        </div>
+
+
+        <article >
+          <div class="d-flex flex-column">
+            <h2 class="text-light text-start">Our location</h2>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5128.456813210446!2d-89.37398210509205!3d40.155676667420515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880b27c56dbb1873%3A0xc65e425bcc0f416c!2s305%20Park%20Pl%2C%20Lincoln%2C%20IL%2062656%2C%20EE.%20UU.!5e0!3m2!1ses-419!2sar!4v1665544663781!5m2!1ses-419!2sar"
+              width="600" height="450" style="border:0; border-radius: 5px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+              
+              <div class="bg-black" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                <p class="text-light py-2" > <i class="bi bi-geo-alt-fill text-light"></i> 305 Park Pl</p>
+                <p class="text-light pb-0 mb-0">IL 62656</p>
+                <p class="text-light pt-0 mt-0 mb-4">Lincoln, EE. UU.</p>
+              </div>
+              
+          </div>
+        </article>
+      </section>
+    </template>
+
+
+    </main> 
 
 
 
@@ -161,11 +453,10 @@
         <div class="title mb-3">STAFF ACCOUNT</div>
         <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
       </div>
-  </div>
 
   </footer>
-  </div>
-
+  
+ </div>
   <!-- CHART.JS -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
@@ -181,6 +472,8 @@
   <!-- VUE.JS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="./main.js"></script>
+
+
 </body>
 
 </html>
