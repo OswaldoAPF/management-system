@@ -3,11 +3,11 @@ const app = Vue.createApp({
     return {
       shoes: [],
       allShoes: [],
-      staff: true,
+      staff: false,
       cart: [],
       totalPrice:Number(localStorage.getItem("totalPrice")),
       openModalNav: false,
-      page: "signUp",
+      page: "home",
       test: [1, 12, 6, 9, 12, 3, 9],
       graphics: "month",
       table: "log",
@@ -18,15 +18,17 @@ const app = Vue.createApp({
       userSignUp: "",
       passwordSignUp: "",
 
-      /* LOGIN MANAGER */
-      userManager: "",
-      passwordManager: "",
+      /* LOGIN STAFF*/
+      userStaff: "",
+      passwordStaff: "",
+      manager:false,
 
       /* USER */
-      alias: "Manager",
-      photo: "./assets/img/gerente.jpg",
+      alias: "",
+      photo: "./assets/img/staff.jfif",
       inicioSesion: false,
-      user: null
+      user: null,
+      aliasName: ""
 
     };
 
@@ -209,6 +211,44 @@ const app = Vue.createApp({
       this.page = "login"
     },
 
+    loginStaff() {
+      if (this.userStaff != '' && this.passwordStaff != '') {
+          firebase.auth().signInWithEmailAndPassword(this.userStaff, this.passwordStaff)
+              .then((userCredential) => {
+                  // Signed in
+                  const user = userCredential.user;
+
+                   this.user = user
+                   console.log(this.user);
+                  /*  this.alias = this.usuario.email */
+                  this.inicioSesion = true
+                  this.alias = this.user.email
+                  this.page = 'home'
+                  this.manager = false
+                  this.staff= true
+                  this.aliasName = this.alias
+                  this.photo = "./assets/img/staff.jfif"
+
+                  if(this.alias === "manager@hotmail.com" ){
+                    this.manager = true
+                    this.staff = false
+                    this.photo = "./assets/img/gerente.jpg"
+                    this.aliasName = "Manager Philip Hampson"
+                  }
+
+                  this.userStaff = ''
+                  this.passwordStaff = ''
+                  // ...
+              })
+              .catch((error) => {
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  console.log(errorCode)
+                  console.log(errorMessage)
+              });
+      }
+  },
+
     //-------------------SIGN UP---------------------------
 
     signUpStaff: function(){
@@ -219,7 +259,7 @@ const app = Vue.createApp({
                 const user = userCredential.user;
                 console.log(user)
                 // lo que va a pasar, cuando termine de registrarse
-                this.page = 'login'
+                this.page = 'home'
                 this.userSignUp = ''
                 this.passwordSignUp = ''
             })
@@ -230,10 +270,22 @@ const app = Vue.createApp({
 
                 console.log(errorCode)
                 console.log(errorMessage)
-                // ..
             });
     }
-    }
+    },
+
+    //--------------------LOG OUT---------------------------------
+    logOut: function () {
+      firebase.auth().signOut();
+
+      this.user = null
+      this.page = 'home'
+      this.inicioSesion = false
+      this.staff= false
+      this.manager = false
+      this.emailInicio = ''
+      this.passwordInicio = ''
+    },
 
   }
 

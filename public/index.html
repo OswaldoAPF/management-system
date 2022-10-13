@@ -42,8 +42,13 @@
             <button @click="page = 'home'" class="button-header">Home<div class="line-hover"></div></button>
             <button class="button-header" @click="openModalNav = true">Shoes<div class="line-hover"></div></button>
             <button @click="page = 'contact'" class="button-header">Contact<div class="line-hover"></div></button>
-            <button @click="page = 'desk'" v-if="staff === true" class="button-header">Desk<div class="line-hover">
-              </div></button>
+            <button @click="page = 'desk'" v-if="staff === true" class="button-header">Desk<div class="line-hover"></div></button>
+
+            <button @click="page = 'desk'" v-if="manager === true" class="button-header">Desk<div class="line-hover"></div></button>
+
+            <button @click="page = 'signUp'" v-if="manager === true" class="button-header">Create User<div
+                class="line-hover"></div></button>
+
             <div class="container-nav-carrito">
               <button class="button-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight"><i class="bi bi-cart4"></i>
@@ -172,13 +177,8 @@
       </template>
 
 
-
-
-
-
-
-
-      <template v-if="page === 'desk'">
+      <!-- DESK MANAGER-->
+      <template v-if="page === 'desk' && manager === true" >
         <div class="d-flex justify-content-center text-center">
           <p class="gerency-welcome">Welcome... Username</p>
         </div>
@@ -259,6 +259,18 @@
           </div>
         </div>
       </template>
+
+
+
+      <!-- DESK STAFF -->
+      <template v-if="page === 'desk' && staff === true && manager === false">
+        <h1 class="text-light text-center">DESK STAFF</h1>
+      </template>
+
+
+
+
+
 
       <!-- FAVS -->
       <section v-if="page === 'fav'" class="d-flex flex-wrap justify-content-center gap-5">
@@ -348,34 +360,34 @@
         </section>
       </template>
 
-      <template v-if="page === 'login'">
+      <template v-if="page === 'login' && !inicioSesion">
         <h1 class="text-light text-center mb-4">LOGIN FOR STAFF</h1>
 
-        <form
+        <div
           class="d-flex flex-column form-contact text-dark bg-light justify-content-center align-items-center text-start col-lg-4 col-md-4 col-sm-12 m-auto">
 
           <label class="w-50 pt-4 fw-semibold m-auto">Email <br>
-            <input class="w-100 border" type="email"></input>
+            <input class="w-100 border" type="email" v-model="userStaff"></input>
           </label>
 
           <label class="w-50 py-3 fw-semibold ">Password <br>
-            <input type="password" class="w-100 border">
+            <input type="password" class="w-100 border" v-model="passwordStaff">
           </label>
 
 
           <label class="w-100 m-auto d-flex justify-content-center mb-3 mt-4">
-            <button class="btn color-buttons fw-bold  my-3 w-50">LOGIN</button>
+            <button class="btn color-buttons fw-bold  my-3 w-50" @click="loginStaff()">LOGIN</button>
           </label>
 
-        </form>
+        </div>
 
       </template>
 
 
       <!-- SIGN UP staff -->
-      <template v-if="page === 'signUp'">
+      <template v-if="page === 'signUp' && manager === true">
         <h1 class="text-light text-center mb-4">SIGN UP STAFF</h1>
-        <form
+        <div
           class="d-flex flex-column form-contact text-dark bg-light justify-content-center align-items-center text-start col-lg-4 col-md-4 col-sm-12 m-auto">
 
           <label class="w-50 pt-4 fw-semibold m-auto">Email <br>
@@ -391,7 +403,23 @@
             <button class="btn color-buttons fw-bold  my-3 w-50" @click=" signUpStaff()">SIGN UP</button>
           </label>
 
-        </form>
+        </div>
+      </template>
+
+      <!-- Log out -->
+      <template v-if="page == 'login' && inicioSesion">
+        <h1 class="text-light text-center mb-4">LOG OUT STAFF</h1>
+        <div
+          class="d-flex flex-column form-contact text-dark bg-light justify-content-center align-items-center text-start col-lg-4 col-md-4 col-sm-12 m-auto">
+
+          <img :src="photo" class="m-3 w-75" style="border-radius: 5px;" alt="">
+          <p>Hi <span class="color-subtitle"> {{aliasName}}</span>! </p>
+
+          <label class="w-100 m-auto d-flex justify-content-center mb-3 mt-4">
+            <button class="btn color-buttons fw-bold  my-3 w-50" @click="logOut">LOG OUT</button>
+          </label>
+
+        </div>
       </template>
 
     </main>
