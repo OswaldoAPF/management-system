@@ -7,7 +7,7 @@ const app = Vue.createApp({
       cart: [],
       totalPrice:Number(localStorage.getItem("totalPrice")),
       openModalNav: false,
-      page: "home",
+      page: "desk",
       test: [1, 12, 6, 9, 12, 3, 9],
       graphics: "month",
       table: "log",
@@ -21,7 +21,7 @@ const app = Vue.createApp({
       /* LOGIN STAFF*/
       userStaff: "",
       passwordStaff: "",
-      manager:false,
+      manager: true,
 
       /* USER */
       alias: "",
@@ -288,15 +288,9 @@ const app = Vue.createApp({
 
   }
 
-  
-
-
 }).mount("#app");
 
 
-
-//lili
-/*const chr =  document.getElementById('myChart').getContext("2d");
 const data = {
   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   datasets: [
