@@ -83,17 +83,17 @@ const app = Vue.createApp({
     },
 
     // -------------------CART----------------------------- 
-    addToCart(shoe){ //BENJA
-      let boolean = this.cart.some( e => e.id === shoe.id) //
+    addToCart(shoe){ 
+      let boolean = this.cart.some( e => e.id === shoe.id) 
       console.log(boolean)
 
-      if(boolean){ //si boleano es true, modifica propiedades del carrito, no modificar, funciona bien
+      if(boolean){ 
         this.cart.forEach( e => {
             if(e.id === shoe.id ){
              e.inCart++
              e.stock--
              e.total += e.price
-             this.cart.inCart++ //activar si hay bugs en el carrito
+             this.cart.inCart++ 
              this.cart.stock--
              this.totalPrice+=shoe.price
              localStorage.setItem("totalPrice",this.totalPrice)
@@ -102,7 +102,7 @@ const app = Vue.createApp({
             }
         })
     }else if(boolean===false && shoe.stock>0){
-      this.cart.push(shoe) //si es falso añade el producto al carrito
+      this.cart.push(shoe) 
       shoe.inCart++
       shoe.stock--
       shoe.total=shoe.price
@@ -118,7 +118,7 @@ const app = Vue.createApp({
       console.log(this.cart)
       console.log(this.shoes)
   },
-  deleteCartProduct(product){    //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO
+  deleteCartProduct(product){    
     let element= JSON.parse(localStorage.getItem("shoes")).filter(e=>e.id==product.id)
     if(product.inCart>1){
       element[0].inCart--
@@ -137,9 +137,9 @@ const app = Vue.createApp({
       element[0].total=element[0].total-element[0].price
       product.inCart--
       product.stock++
-      //product.total=null
-     // productIndex=this.cart.indexOf(product)//guarda la ubicacion del producto en el array
-      this.cart=this.cart.filter(e=>e.id !=product.id) //elimina producto del array 
+      
+     
+      this.cart=this.cart.filter(e=>e.id !=product.id)  
       this.totalPrice-=product.price
       localStorage.setItem("totalPrice",this.totalPrice)
       localStorage.setItem("cart",JSON.stringify(this.cart))
@@ -152,7 +152,7 @@ const app = Vue.createApp({
       localStorage.setItem("totalPrice",this.totalPrice)
       this.totalPrice=Number(localStorage.getItem("totalPrice"))
     }
-    //productIndex=null
+    
   },
   buy(){ 
     console.log(this.shoes[0])
@@ -162,8 +162,9 @@ const app = Vue.createApp({
     }
     this.cart=[]
     this.totalPrice=0
-   
-    //this.shoes.inCart=0
+    localStorage.removeItem('cart');
+    localStorage.removeItem('totalPrice');
+    
     alert("Thaks for the purchase")
   },
 
