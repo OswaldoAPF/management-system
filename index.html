@@ -80,7 +80,7 @@
             </div>
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
               <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 btn-dark" type="button">Buy!</button>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 color-buttons" type="button">Buy!</button>
             </div>
           </div>
 
@@ -98,7 +98,7 @@
                   v-if="shoe.stock == 0"></p>
                 <img :src="shoe.image" class="card-img-top" alt="...">
                 <div class="card-body d-flex flex-column">
-                  <h5 class="card-title">{{shoe.title}}</h5>
+                  <h5 class="card-title fw-bold">{{shoe.title}}</h5>
                   <p class=" ">${{shoe.price}}</p>
       
                   <p v-if="shoe.stock > 0" class="card-text"> Stock left: {{shoe.stock}}</p>
@@ -292,7 +292,7 @@
 
       <section class="d-flex text-center justify-content-evenly flex-wrap">
         <div class="d-flex flex-column col-lg-4 col-sm-12">
-          <h2 class="text-light text-start">Let's talk</h2>
+          <h2 class=" text-start color-subtitle">Let's talk</h2>
 
           <form class="d-flex flex-column text-dark bg-light form-contact align-items-center text-start">
             <h3 class="fw-bold p-4 fs-4">How can we help? <br> Complete the form and we will contact you shortly.</h3>
@@ -314,7 +314,7 @@
             </label>
 
             <label class="w-100 m-auto d-flex justify-content-center mb-3">
-              <button type="submit" class="btn btn-dark my-3 w-50">Send</button>
+              <button type="submit" class="btn color-buttons fw-bold  my-3 w-50">Send</button>
             </label>
           </form>
         </div>
@@ -322,16 +322,16 @@
 
         <article >
           <div class="d-flex flex-column">
-            <h2 class="text-light text-start">Our location</h2>
+            <h2 class="color-subtitle text-start">Our location</h2>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5128.456813210446!2d-89.37398210509205!3d40.155676667420515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880b27c56dbb1873%3A0xc65e425bcc0f416c!2s305%20Park%20Pl%2C%20Lincoln%2C%20IL%2062656%2C%20EE.%20UU.!5e0!3m2!1ses-419!2sar!4v1665544663781!5m2!1ses-419!2sar"
-              width="600" height="450" style="border:0; border-radius: 5px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" allowfullscreen="" loading="lazy"
+              width="500" height="465" style="border:0; border-radius: 5px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
               
-              <div class="bg-black" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                <p class="text-light py-2" > <i class="bi bi-geo-alt-fill text-light"></i> 305 Park Pl</p>
-                <p class="text-light pb-0 mb-0">IL 62656</p>
-                <p class="text-light pt-0 mt-0 mb-4">Lincoln, EE. UU.</p>
+              <div class=" footer-iframe" >
+                <p class="text-dark fw-bold py-2" > <i class="bi bi-geo-alt-fill text-light"></i> 305 Park Pl</p>
+                <p class="text-dark fw-bold pb-0 mb-0">IL 62656</p>
+                <p class="text-dark fw-bold pt-0 mt-0 mb-4">Lincoln, EE. UU.</p>
               </div>
               
           </div>
