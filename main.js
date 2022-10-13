@@ -5,7 +5,7 @@ const app = Vue.createApp({
       allShoes: [],
       staff: true,
       cart: [],
-      totalPrice: 0,
+      totalPrice:Number(localStorage.getItem("totalPrice")),
       openModalNav: false,
       page: "home",
       test: [1, 12, 6, 9, 12, 3, 9],
@@ -17,17 +17,28 @@ const app = Vue.createApp({
 
   },
 
-  created() {
+  created(){
+    if (!localStorage.getItem("totalPrice")){
+      localStorage.setItem("totalPrice",0)
+      this.totalPrice=Number(localStorage.getItem("totalPrice"))
+    }
     fetch('nike.json')
-      .then(res => res.json())
-      .then(res => {
+    .then(res => res.json())
+    .then(res =>{
+      if (!localStorage.getItem("shoes")){
         this.shoes = res
-      })
-      .catch(err => console.log(err))
-
-
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+     }
+    } )
+    .catch(err => console.log(err))
+    //local storage
+    this.shoes=JSON.parse(localStorage.getItem("shoes")) ||[]
     this.favShoes = JSON.parse(localStorage.getItem("fav")) || []
-
+    let cart = JSON.parse(localStorage.getItem("cart"))?.map( e => e.id)
+    if(cart){
+      let aux = this.shoes.filter( e => cart.includes(e.id))
+      this.cart= aux
+    }
   },
   methods: {
     openNav() {
@@ -71,65 +82,84 @@ const app = Vue.createApp({
     },
 
     // -------------------CART----------------------------- 
-    addToCart(shoe) { //BENJA
-      let boolean = this.cart.some(e => e.id === shoe.id) //
-      console.log(boolean)
-
-      if (boolean) { //si boleano es true, modifica propiedades del carrito, no modificar, funciona bien
-        this.cart.forEach(e => {
-          if (e.id === shoe.id) {
-            e.inCart++
-            e.stock--
-            e.total += e.price
-            //this.cart.inCart++ //activar si hay bugs en el carrito
-            //this.cart.stock--
-            this.totalPrice += shoe.price
-          }
+    addToCart(shoe){ 
+      let boolean = this.cart.some( e => e.id === shoe.id) 
+      if(boolean){ 
+        this.cart.forEach( e => {
+            if(e.id === shoe.id ){
+             e.inCart++
+             e.stock--
+             e.total += e.price
+             this.cart.inCart++ 
+             this.cart.stock--
+             this.totalPrice+=shoe.price
+             localStorage.setItem("totalPrice",this.totalPrice)
+             localStorage.setItem("cart",JSON.stringify(this.cart))
+             localStorage.setItem("shoes",JSON.stringify(this.shoes))
+            }
         })
-      } else if (boolean === false && shoe.stock > 0) {
-        this.cart.push(shoe) //si es falso añade el producto al carrito
-        shoe.inCart++
-        shoe.stock--
-        shoe.total = shoe.price
-        this.cart.inCart++
-        this.cart.stock--
-        this.cart.total += this.cart.price
-        this.totalPrice = this.totalPrice + shoe.total
-      }
-
-      console.log(this.cart)
-      console.log(this.shoes)
-    },
-    deleteCartProduct(product) {
-      //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO, en proceso...
-      if (product.inCart > 1) {
-        product.inCart--
-        product.stock++
-        product.total = product.total - product.price
-        this.totalPrice -= product.price
-      } else {
-        //console.log(this.cart.indexOf(product))
-        product.inCart--
-        product.stock++
-        product.total = null
-        productIndex = this.cart.indexOf(product)//guarda la ubicacion del producto en el array
-        this.cart.splice(productIndex, 0) //elimina producto del array
-        this.totalPrice -= product.price
-      }
-      productIndex = null
-    },
-    buy() {
-      console.log(this.shoes[0])
-      let lenght = this.shoes.length;
-      for (let a = 0; a < lenght; a++) {
-        this.shoes[a].inCart = 0
-      }
-      this.cart = []
-      this.totalPrice = 0
-
-      //this.shoes.inCart=0
-      alert("Thaks for the purchase")
-    },
+    }else if(boolean===false && shoe.stock>0){
+      this.cart.push(shoe) 
+      shoe.inCart++
+      shoe.stock--
+      shoe.total=shoe.price
+      this.cart.inCart++
+      this.cart.stock--
+      this.cart.total+=this.cart.price
+      this.totalPrice=this.totalPrice+shoe.total
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }
+  },
+  deleteCartProduct(product){    
+    let element= JSON.parse(localStorage.getItem("shoes")).filter(e=>e.id==product.id)
+    if(product.inCart>1){
+      element[0].inCart--
+      element[0].stock++
+      element[0].total=element[0].total-element[0].price
+      product.inCart--
+      product.stock++
+      product.total=product.total-product.price
+      this.totalPrice-=product.price
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }else {
+      element[0].inCart--
+      element[0].stock++
+      element[0].total=element[0].total-element[0].price
+      product.inCart--
+      product.stock++
+      
+     
+      this.cart=this.cart.filter(e=>e.id !=product.id)  
+      this.totalPrice-=product.price
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }
+    if(!this.cart.length){
+    
+      localStorage.setItem("cart",JSON.stringify([]))
+      this.cart=JSON.parse(localStorage.getItem("cart"))
+      localStorage.setItem("totalPrice",this.totalPrice)
+      this.totalPrice=Number(localStorage.getItem("totalPrice"))
+    }
+    
+  },
+  buy(){ 
+    let lenght=this.shoes.length;
+    for(let a=0 ; a<lenght;a++){
+      this.shoes[a].inCart=0
+    }
+    this.cart=[]
+    this.totalPrice=0
+    localStorage.removeItem('cart');
+    localStorage.removeItem('totalPrice');
+    
+    alert("Thaks for the purchase")
+  },
 
     // --------------------FAVORITES---------------------
     addToFav: function (product) {
@@ -143,7 +173,6 @@ const app = Vue.createApp({
 
       } else {
         let shoe = this.shoes.filter(e => e.id === product.id)
-        console.log(shoe);
         shoe[0].fav = false
 
         this.favShoes = this.favShoes?.filter(shoe => shoe.title !== product.title)
@@ -151,8 +180,6 @@ const app = Vue.createApp({
 
       localStorage.setItem("fav", JSON.stringify(this.favShoes))
       this.favShoes = JSON.parse(localStorage.getItem("fav"))
-
-      console.log(product);
     },
 
     printFav: function () {
@@ -171,13 +198,8 @@ const app = Vue.createApp({
 
 
 
-
-
-
-
-
-
-/* WEEK */
+//lili
+/*const chr =  document.getElementById('myChart').getContext("2d");
 const data = {
   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   datasets: [

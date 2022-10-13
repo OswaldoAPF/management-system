@@ -2,14 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa';
 }
 
 body{
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(252, 227, 227) !important;
+   /*  background-color: rgb(252, 227, 227) !important; */
+    /* background-color: rgb(105, 9, 9) !important; */
+    background-color: rgb(0, 0, 0) !important;
 }
 
 #app{
@@ -46,6 +48,11 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container-nav img{
+   margin-left: 10px; 
+
 }
 
 .container-nav-carrito{
@@ -211,13 +218,14 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px 20px;
+    /* margin: 20px 20px; */
 }
 
 .container-brands div{
     display: flex;
     justify-content: center;
     gap: 35px;
+    margin-bottom: 20px;
 }
 
 .container-brands img:nth-child(1){
@@ -227,14 +235,14 @@ nav{
     margin-top: 10px;
 }
 
-.container-brands img:nth-child(2){
+.container-brands img:nth-child(3){
     width: 90px;
     height: 60px;
     opacity: 0.5;
 }
-.container-brands img:nth-child(3){
+.container-brands img:nth-child(2){
     width: 100px;
-    height: 90px;
+    height: 70px;
     opacity: 0.5;
     padding-bottom: 10px;
 }
@@ -253,13 +261,11 @@ main{
 
 .container-portada .container-welcome{
     position: absolute;
-    padding: 0px 10px; 
+    padding: 20px !important;
+    
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.815);
 }
 
-
-.container-welcome h2:nth-child(3){
-    color: brown;
-}
 
 .container-img-portada{
     display:flex;
@@ -270,6 +276,9 @@ main{
     width: 100%;
 }
 
+.color-subtitle{
+    color: #FF5757
+}
 
 
 /* FOOTER */
@@ -351,7 +360,7 @@ main{
 .title-footer:hover::after {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    color: brown;
+    color: #FF5757;
 }
 
 .paragraph-footer {
@@ -360,7 +369,7 @@ main{
 }
 
 .paragraph-footer:hover {
-    color: brown;
+    color: #FF5757;
     transition: 0.5s;
 }
 
@@ -385,7 +394,7 @@ main{
 
 }
 .gerency-welcome:hover{
-    color: brown;
+    color: #FF5757;
     transition: .5s;
 }
 .buttons-graphics{
@@ -411,6 +420,10 @@ main{
 
 .buttons-graphics-rigth{
     margin-right: 250px;
+}
+
+.logo-portada{
+    width: 270px;
 }
 
 /* MEDIA QUERY */
@@ -504,6 +517,33 @@ main{
     }
     .modal-nav .button-header{
         font-size: 25px;
+    }
+
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute;
+        left: 50px;
+        padding: 5px !important;
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
+    .logo-portada{
+        width: 180px;
     }
 
 }
@@ -600,8 +640,8 @@ main{
     
     .container-portada .container-welcome{
         position: absolute;
-        padding: 0px 10px; 
-        left: 200px;
+        padding: 15px !important;
+        left: 150px;
     }
 
     .container-img-portada{
@@ -612,6 +652,10 @@ main{
     
     .container-img-portada img{
         width: 100%;
+    }
+
+    .logo-portada{
+        width: 200px;
     }
 
     
@@ -706,6 +750,40 @@ main{
         display: flex;
 
     }
+
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute; 
+        left: 50px;
+        padding: 0px 5px !important;
+    }
+
+    .welcome-portada {
+        font-size: 15px !important;
+    }
+
+    .logo-portada{
+        width: 100px;
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
+
+
 }
 
 @media (min-width : 320px) and (max-width : 769px){

@@ -28,7 +28,7 @@
         
         <header>
           <div class="container-nav">
-            <img src="./assets/img/logo.png" alt="logo">
+            <img src="./assets/img/logo2.png" alt="logo">
             <nav :class="{'open-modal-nav' : navOpen}">
               <div class="container-nav-prin">
                 <button @click="page = 'home'" class="button-header">Home<div class="line-hover"></div></button>
@@ -55,16 +55,34 @@
         
         <main>
 
-        
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                ...
-              </div>
+          <!-- CART -->
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel">Cart</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <div class="offcanvas-header">
+              <p>Check your products here!</p>
+            </div>
+            <div class="offcanvas-body">
+              <template v-for="product in cart">
+                <div class="card_cart m-3 d-flex align-items-start border p-3 border-dark"  v-if="product.inCart > 0">
+                  <div class="card-body">
+                    <img class="w-25" :src="product.image" alt="cart_imagen">
+                    <h5 class="card-title fw-bold">{{product.title}}</h5>
+                    <p class="card-text">Quantity: {{product.inCart}}</p>
+                    <p class="card-text">${{product.total}}</p>
+                    <button class="btn btn-sacar btn-dark " @click="deleteCartProduct(product)">Remove of cart</button>
+                  </div>
+                </div>
+                <div v-else></div>
+              </template>
+            </div>
+            <div class="d-flex justify-content-center flex-column align-items-center border-top">
+              <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 btn-dark" type="button">Buy!</button>
+            </div>
+          </div>
 
             <section class="d-flex flex-wrap justify-content-center gap-5" v-if="page === 'nike' || page === 'adidas' || page === 'puma' || page === 'alls'">
       
@@ -103,20 +121,20 @@
             <template v-if="page === 'home'">
               <section class="container-home">
                 <div class="container-portada">
-                  <div id="inicio" class="container-welcome">
-                    <h2><i>Welcome</i></h2>
-                    <h2><i>to</i></h2>
-                    <h2>That Shoes</h2>
+                  <div id="inicio" class="container-welcome bg-black">
+                    <h2 class="welcome-portada fw-bolder text-center pt-3  text-light" style="font-family: Arial;">WELCOME TO</h2> 
+                    <img class="logo-portada" src="./assets/img/logo.png" alt="logo">
+                    
                   </div>
                   <div class="container-img-portada">
                     <img class="img-portada" src="./assets/img/inicio.jpg" alt="portada">
                   </div>
                 </div>
 
-                
-                <div class="p-5">
-                  <p class="fw-bold fs-5 text-light">
-                    a little about us
+                <div class="d-flex flex-column align-items-center flex-md-row">
+                <div class="p-5 col-md-6">
+                  <p class="fw-bold fs-5 color-subtitle">
+                    A little about us
                   </p>
                   <p class="text-light">
                     We are a store created by entrepreneurs looking to bring to 
@@ -126,17 +144,22 @@
                     We offer speed and efficiency in the purchase and delivery of your order
                   </p>
                 </div>
-                
-
-              </section>
-              <div class="container-brands">
-                <h4 class="text-light">Brands</h4>
-                <div>
-                  <img src="./assets/img/nike.png" alt="">
-                  <img src="./assets/img/adidas.png" alt="">
-                  <img src="./assets/img/logo-puma.png" alt="">
+                <div class="container-brands col-6 color-subtitle">
+                  <h4 class="fw-bold">Brands</h4>
+                  <div>
+                    <img src="./assets/img/nikeBlanco.png" alt="">
+                    <img src="./assets/img/pumaBlanco.png" alt="">
+                    <img src="./assets/img/adidasBlanco.png" alt="">
+                  </div>
                 </div>
               </div>
+
+              <div class="d-flex">
+                <img class="w-100" src="./assets/img/portada2.png" alt="">
+              </div>
+
+              </section>
+
             </template>
             
           
@@ -230,7 +253,7 @@
 
       <!-- FAVS -->
     <section v-if="page === 'fav'" class="d-flex flex-wrap justify-content-center gap-5">
-      <h1 class="w-100 text-center">NIKE</h1>
+      <h1 class="w-100 text-center">Favorites</h1>
 
       <div class="alert alert-warning h-100" v-if="favShoes.length === 0" role="alert">
         Nothing in favorites yet!!!
@@ -342,7 +365,7 @@
   
  </div>
   <!-- CHART.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
   <!-- BOOTSTRAP -->
