@@ -71,7 +71,7 @@
                     <h5 class="card-title fw-bold">{{product.title}}</h5>
                     <p class="card-text">Quantity: {{product.inCart}}</p>
                     <p class="card-text">${{product.total}}</p>
-                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+                    <button class="btn btn-sacar btn-outline-secondary fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
                   </div>
                 </div>
                 <div v-else></div>
@@ -79,7 +79,8 @@
             </div>
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
               <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button" v-if="cart.length">Buy!</button>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button" v-else disabled>Buy!</button>
             </div>
           </div>
 
