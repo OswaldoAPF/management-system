@@ -7,12 +7,27 @@ const app = Vue.createApp({
       cart: [],
       totalPrice:Number(localStorage.getItem("totalPrice")),
       openModalNav: false,
-      page: "login",
+      page: "signUp",
       test: [1, 12, 6, 9, 12, 3, 9],
       graphics: "month",
       table: "log",
       navOpen: false,
       favShoes: [],
+
+      /* SIGN UP STAFF */
+      userSignUp: "",
+      passwordSignUp: "",
+
+      /* LOGIN MANAGER */
+      userManager: "",
+      passwordManager: "",
+
+      /* USER */
+      alias: "Manager",
+      photo: "./assets/img/gerente.jpg",
+      inicioSesion: false,
+      user: null
+
     };
 
   },
@@ -192,6 +207,32 @@ const app = Vue.createApp({
     //-------------------LOGIN---------------------------
     printLogin: function(){
       this.page = "login"
+    },
+
+    //-------------------SIGN UP---------------------------
+
+    signUpStaff: function(){
+      if (this.userSignUp != '' && this.passwordSignUp != '') {
+        firebase.auth().createUserWithEmailAndPassword(this.userSignUp, this.passwordSignUp)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user)
+                // lo que va a pasar, cuando termine de registrarse
+                this.page = 'login'
+                this.userSignUp = ''
+                this.passwordSignUp = ''
+            })
+            .catch((error) => {
+
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                console.log(errorCode)
+                console.log(errorMessage)
+                // ..
+            });
+    }
     }
 
   }
