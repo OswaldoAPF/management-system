@@ -85,8 +85,6 @@ const app = Vue.createApp({
     // -------------------CART----------------------------- 
     addToCart(shoe){ 
       let boolean = this.cart.some( e => e.id === shoe.id) 
-      console.log(boolean)
-
       if(boolean){ 
         this.cart.forEach( e => {
             if(e.id === shoe.id ){
@@ -114,9 +112,6 @@ const app = Vue.createApp({
       localStorage.setItem("cart",JSON.stringify(this.cart))
       localStorage.setItem("shoes",JSON.stringify(this.shoes))
     }
-
-      console.log(this.cart)
-      console.log(this.shoes)
   },
   deleteCartProduct(product){    
     let element= JSON.parse(localStorage.getItem("shoes")).filter(e=>e.id==product.id)
@@ -155,7 +150,6 @@ const app = Vue.createApp({
     
   },
   buy(){ 
-    console.log(this.shoes[0])
     let lenght=this.shoes.length;
     for(let a=0 ; a<lenght;a++){
       this.shoes[a].inCart=0
@@ -180,7 +174,6 @@ const app = Vue.createApp({
 
       } else {
         let shoe = this.shoes.filter(e => e.id === product.id)
-        console.log(shoe);
         shoe[0].fav = false
 
         this.favShoes = this.favShoes?.filter(shoe => shoe.title !== product.title)
@@ -188,8 +181,6 @@ const app = Vue.createApp({
 
       localStorage.setItem("fav", JSON.stringify(this.favShoes))
       this.favShoes = JSON.parse(localStorage.getItem("fav"))
-
-      console.log(product);
     },
 
     printFav: function () {
