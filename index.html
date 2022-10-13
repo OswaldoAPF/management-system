@@ -293,7 +293,7 @@
             <h3 class="fw-bold p-4 fs-4">How can we help? <br> Complete the form and we will contact you shortly.</h3>
 
             <label class="w-75 fw-semibold ">Name and Surname <br>
-              <input type="text" required class="w-100 border">
+              <input type="text" required class="w-100 border" v-bind="">
             </label>
 
             <label class="w-75 py-3 fw-semibold ">Email <br>
@@ -309,7 +309,7 @@
             </label>
 
             <label class="w-100 m-auto d-flex justify-content-center mb-3">
-              <button type="submit" class="btn btn-dark my-3 w-50" @click="contactAlert()">Send</button>
+              <button type="reset" class="btn btn-dark my-3 w-50" @click="contactAlert()">Send</button>
             </label>
           </form>
         </div>
