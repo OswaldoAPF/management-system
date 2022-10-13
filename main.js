@@ -1,42 +1,61 @@
-const { createApp } = Vue
-
-createApp({
+const app = Vue.createApp({
   data() {
     return {
       shoes: [],
       allShoes: [],
-      page: "home",
-      openModalNav: false,
-      login: false,
+      staff: true,
       cart: [],
-      totalPrice: 0,
-
-      //favs
+      totalPrice:Number(localStorage.getItem("totalPrice")),
+      openModalNav: false,
+      page: "home",
+      test: [1, 12, 6, 9, 12, 3, 9],
+      graphics: "month",
+      table: "log",
+      navOpen: false,
       favShoes: [],
+    };
+
+  },
+
+  created(){
+    if (!localStorage.getItem("totalPrice")){
+      localStorage.setItem("totalPrice",0)
+      this.totalPrice=Number(localStorage.getItem("totalPrice"))
     }
-
-  },
-  created() {
     fetch('nike.json')
-      .then(res => res.json())
-      .then(res => {
+    .then(res => res.json())
+    .then(res =>{
+      if (!localStorage.getItem("shoes")){
         this.shoes = res
-      })
-      .catch(err => console.log(err))
-
-
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+     }
+    } )
+    .catch(err => console.log(err))
+    //local storage
+    this.shoes=JSON.parse(localStorage.getItem("shoes")) ||[]
     this.favShoes = JSON.parse(localStorage.getItem("fav")) || []
-    this.cart = JSON.parse(localStorage.getItem("cart")) || []
-    
+    let cart = JSON.parse(localStorage.getItem("cart"))?.map( e => e.id)
+    if(cart){
+      let aux = this.shoes.filter( e => cart.includes(e.id))
+      this.cart= aux
+    }
   },
-
   methods: {
-
-    //------------FILTERS-------------------------------
+    openNav() {
+      if (this.navOpen === false) {
+        this.navOpen = true
+      }
+      else {
+        this.navOpen = false
+      }
+    
+    },
     printAll: function () {
       this.allShoes = []
       this.allShoes = this.shoes
       this.openModalNav = false
+      this.navOpen = false
+      this.page = "alls"
     },
 
     printNike: function () {
@@ -44,6 +63,7 @@ createApp({
       this.allShoes = this.shoes.filter(e => e.category === "nike")
       this.openModalNav = false
       this.page = "nike"
+      this.navOpen = false
     },
 
     printAdidas: function () {
@@ -51,6 +71,7 @@ createApp({
       this.allShoes = this.shoes.filter(e => e.category === "adidas")
       this.openModalNav = false
       this.page = "adidas"
+      this.navOpen = false
     },
 
     printPuma: function () {
@@ -58,89 +79,88 @@ createApp({
       this.allShoes = this.shoes.filter(e => e.category === "puma")
       this.openModalNav = false
       this.page = "puma"
+      this.navOpen = false
     },
 
     // -------------------CART----------------------------- 
-    addToCart(shoe) { //BENJA
-
-      let boolean = this.cart.some(e => e.id === shoe.id)
-
-
-      if (boolean) {
-        this.cart.forEach(e => {
-          if (e.id === shoe.id) {
-
-            //anda bien
-            e.inCart++
-            e.stock--
-            e.total += e.price
-            this.totalPrice += shoe.price
-
-            //no funciona
-            this.allShoes.stock--
-            this.shoes.stock--
-
-          }
+    addToCart(shoe){ 
+      let boolean = this.cart.some( e => e.id === shoe.id) 
+      if(boolean){ 
+        this.cart.forEach( e => {
+            if(e.id === shoe.id ){
+             e.inCart++
+             e.stock--
+             e.total += e.price
+             this.cart.inCart++ 
+             this.cart.stock--
+             this.totalPrice+=shoe.price
+             localStorage.setItem("totalPrice",this.totalPrice)
+             localStorage.setItem("cart",JSON.stringify(this.cart))
+             localStorage.setItem("shoes",JSON.stringify(this.shoes))
+            }
         })
-
-      } else if (boolean === false && shoe.stock > 0) {
-        this.cart.push(shoe)
-        shoe.inCart++
-        shoe.stock--
-        shoe.total = shoe.price
-
-        
-
-        //anda bien
-        this.cart.inCart++
-        this.cart.stock--
-        this.cart.total += this.cart.price
-        this.totalPrice = this.totalPrice + shoe.total
-      }
-
-      localStorage.setItem("cart", JSON.stringify(this.cart))
-      this.cart = JSON.parse(localStorage.getItem("cart")) 
-       
-    },
-
-
-    deleteCartProduct(product) {
+    }else if(boolean===false && shoe.stock>0){
+      this.cart.push(shoe) 
+      shoe.inCart++
+      shoe.stock--
+      shoe.total=shoe.price
+      this.cart.inCart++
+      this.cart.stock--
+      this.cart.total+=this.cart.price
+      this.totalPrice=this.totalPrice+shoe.total
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }
+  },
+  deleteCartProduct(product){    
+    let element= JSON.parse(localStorage.getItem("shoes")).filter(e=>e.id==product.id)
+    if(product.inCart>1){
+      element[0].inCart--
+      element[0].stock++
+      element[0].total=element[0].total-element[0].price
+      product.inCart--
+      product.stock++
+      product.total=product.total-product.price
+      this.totalPrice-=product.price
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }else {
+      element[0].inCart--
+      element[0].stock++
+      element[0].total=element[0].total-element[0].price
+      product.inCart--
+      product.stock++
       
-      if (product.inCart > 1) {
-
-        product.inCart--
-        product.stock++
-        product.total = product.total - product.price
-        this.totalPrice -= product.price
-
-      } else {
-        //console.log(this.cart.indexOf(product))
-        product.inCart--
-        product.stock++
-        product.total = null
-        productIndex = this.cart.indexOf(product)//guarda la ubicacion del producto en el array
-        this.cart.splice(productIndex, 0) //elimina producto del array
-        this.totalPrice -= product.price
-      }
-      productIndex = null
-
-
-/*       localStorage.setItem("cart", JSON.stringify(this.cart))
-      this.cart = JSON.parse(localStorage.getItem("cart"))  */
-
-    },
-    buy() {
-      console.log(this.shoes[0])
-      let lenght = this.shoes.length;
-      for (let a = 0; a < lenght; a++) {
-        this.shoes[a].inCart = 0
-      }
-      this.cart = []
-      this.totalPrice = 0
-
-      //this.shoes.inCart=0
-      alert("Thaks for the purchase")
-    },
+     
+      this.cart=this.cart.filter(e=>e.id !=product.id)  
+      this.totalPrice-=product.price
+      localStorage.setItem("totalPrice",this.totalPrice)
+      localStorage.setItem("cart",JSON.stringify(this.cart))
+      localStorage.setItem("shoes",JSON.stringify(this.shoes))
+    }
+    if(!this.cart.length){
+    
+      localStorage.setItem("cart",JSON.stringify([]))
+      this.cart=JSON.parse(localStorage.getItem("cart"))
+      localStorage.setItem("totalPrice",this.totalPrice)
+      this.totalPrice=Number(localStorage.getItem("totalPrice"))
+    }
+    
+  },
+  buy(){ 
+    let lenght=this.shoes.length;
+    for(let a=0 ; a<lenght;a++){
+      this.shoes[a].inCart=0
+    }
+    this.cart=[]
+    this.totalPrice=0
+    localStorage.removeItem('cart');
+    localStorage.removeItem('totalPrice');
+    
+    alert("Thaks for the purchase")
+  },
 
     // --------------------FAVORITES---------------------
     addToFav: function (product) {
@@ -154,7 +174,6 @@ createApp({
 
       } else {
         let shoe = this.shoes.filter(e => e.id === product.id)
-        console.log(shoe);
         shoe[0].fav = false
 
         this.favShoes = this.favShoes?.filter(shoe => shoe.title !== product.title)
@@ -162,8 +181,6 @@ createApp({
 
       localStorage.setItem("fav", JSON.stringify(this.favShoes))
       this.favShoes = JSON.parse(localStorage.getItem("fav"))
-
-      console.log(product);
     },
 
     printFav: function () {
@@ -174,21 +191,182 @@ createApp({
 
   }
 
+  
 
 
-}).mount('#app')
+}).mount("#app");
 
 
 
-      //some nos da true si encuentra alguno que coincida con la condicion
-      //En este caso se busca que en el array cart busque en sus objetos la propiedad "id" y si coincide con el objeto que viene por parámetro, de true, y sino false.
+//lili
+/*const chr =  document.getElementById('myChart').getContext("2d");
+const data = {
+  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  datasets: [
+    {
+      label: "",
+      data: app.test,
+      backgroundColor: [
+        "#FF74B1",
+        "#C7F2A4",
+        "#FA7070",
+        "#C3F8FF",
+        "#FFF89C",
+        "#B2A4FF",
+        "#FFAD60",
+      ],
+      borderColor: "aliceblue",
+      borderWidth: 2,
+    },
+  ],
+};
+const config = {
+  type: "bar",
+  data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "SALES FOR WEEK",
+        weight: "bold",
+        color: "#FEF9EF",
+        padding: {
+          top: 10,
+          bottom: 30,
+        },
+        font: {
+          size: 20,
+        },
+      },
+    },
+    animations: {
+      tension: {
+        duration: 300,
+        easing: "easeInOutBounce",
+        from: 1,
+        to: 0,
+        loop: true,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+};
+const myChart = new Chart(document.getElementById("weekChart"), config);
 
-      
+/* MONTH */
+const confi = {
+  type: "bar",
+  data: {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
+      {
+        label: "",
+        data: [950, 180, 654, 280, 505, 432, 203, 300, 840, 532, 202, 101],
+        backgroundColor: [
+          "#FFF8BC",
+          "#FFE898",
+          "#FF87B2",
+          "#F65A83",
+          "#F77E21",
+          "#E7F6F2",
+          "#A5C9CA",
+          "#9C9EFE",
+          "#A66CFF",
+          "#73A9AD",
+          "#F5F0BB",
+          "#FF9494",
+          "#FFD1D1",
+        ],
+        borderColor: "aliceblue",
+        borderWidth: 2,
+      },
+    ],
+  },
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "SALES FOR MONTH",
+        weight: "bold",
+        color: "#FEF9EF",
+        padding: {
+          top: 10,
+          bottom: 30,
+        },
+        font: {
+          size: 20,
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+};
+const Char = new Chart(document.getElementById("monthChart"), confi);
 
-      //Creamos un condicional para hacer diferentes cosas, depentiendo de si ya existe o no el mismo objeto que viene por parametro dentro del array de carts
-
-      //If boolean is true, se recorre el array de cart donde especificamente al objeto de cart con la propiedad id que cocincide con el objeto que viene por parametro, se le modifica, en +1 inCart, en -1 el stock, se acumula el valor del total con el valor del precio del producto.
-
-
-      
-        //Si boolean es false, and shoe.stock es mayor a 0, al array cart como no existe ese objeto que viene como parametro se lo pusheamos, y en el array shoe, modificamos el stock y demas.
+/* YEAR */
+const configuration = {
+  type: "bar",
+  data: {
+    labels: ["2017", "2018", "2019", "2020", "2021", "2022"],
+    datasets: [
+      {
+        label: "",
+        data: [500, 800, 504, 200, 505, 320],
+        backgroundColor: [
+          "#FFF8BC",
+          "#FFE898",
+          "#FF87B2",
+          "#F65A83",
+          "#F77E21",
+          "#E7F6F2",
+        ],
+        borderColor: "aliceblue",
+        borderWidth: 2,
+      },
+    ],
+  },
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "SALES BY YEAR",
+        weight: "bold",
+        color: "#FEF9EF",
+        padding: {
+          top: 10,
+          bottom: 30,
+        },
+        font: {
+          size: 20,
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+};
+const Cha = new Chart(document.getElementById("annualChart"), configuration);
