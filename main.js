@@ -8,7 +8,7 @@ const app = Vue.createApp({
       openModalNav: false,
       page: "desk",
       test: [1, 12, 6, 9, 12, 3, 9],
-      graphics: "month",
+      graphics: "week",
       table: "log"
     };
   },

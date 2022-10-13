@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <title>Document</title>
 
 </head>
@@ -113,21 +115,21 @@
         <div class="d-flex justify-content-center text-center">
           <p class="gerency-welcome">Welcome... Username</p>
         </div>
-        <div class="d-flex justify-content-between">
-        <div class="buttons-graphics">
-          <button @click="graphics = 'week'" class="btn btn-graphics"> Sales For Week </button>
-          <button @click="graphics = 'month'" class="btn btn-graphics">Sales For Month</button>
-          <button @click="graphics = 'year'" class="btn btn-graphics">Sales By Year</button>
+        <div class="d-flex justify-content-between conteiner-gerency-nav">
+          <div class="buttons-graphics">
+            <button @click="graphics = 'week'" class="btn btn-graphics"> Sales For Week </button>
+            <button @click="graphics = 'month'" class="btn btn-graphics">Sales For Month</button>
+            <button @click="graphics = 'year'" class="btn btn-graphics">Sales By Year</button>
+          </div>
+          <div class="buttons-graphics-rigth">
+            <button @click="table = 'log'" class="btn btn-graphics">Work Hours</button>
+            <button @click="table = 'singin'" class="btn btn-graphics">Add To Staff</button>
+          </div>
         </div>
-        <div class="buttons-graphics-rigth">
-          <button @click="table = 'log'" class="btn btn-graphics">Work Hours</button>
-          <button @click="table = 'singin'" class="btn btn-graphics">Add To Staff</button>
-        </div>
-      </div>
         <div class="conteiner-desk">
           <div>
             <div class="w-100 d-flex justify-content-center">
-              <div v-show="graphics === 'week'" class="graphics">
+              <div v-show="graphics === 'week'" class="graphics animate__animated animate__zoomIn">
                 <canvas id="weekChart"></canvas>
               </div>
             </div>
@@ -135,7 +137,7 @@
 
           <div>
             <div class="w-100 d-flex justify-content-center">
-              <div v-show="graphics === 'month'" class="graphics">
+              <div v-show="graphics === 'month'" class="graphics animate__animated animate__zoomIn">
                 <canvas id="monthChart"></canvas>
               </div>
             </div>
@@ -143,52 +145,67 @@
 
           <div>
             <div class="w-100 d-flex justify-content-center">
-              <div v-show="graphics === 'year'" class="graphics">
+              <div v-show="graphics === 'year'" class="graphics animate__animated animate__zoomIn">
                 <canvas id="annualChart"></canvas>
               </div>
             </div>
           </div>
-        
 
-      <div class="w-50">
-        
-        <table class="table table-dark table-striped table-hover">
-          <thead>
-            <tr>
-              <th class="text-center" scope="col">Employees</th>
-              <th class="text-center" scope="col">Check-in time</th>
-              <th class="text-center" scope="col">Break</th>
-              <th class="text-center" scope="col">Departure time</th>
-              <th class="text-center" scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody class="tbody-gerency">
-            <tr>
-              <td>Yaki Siera</td>
-              <td>8:00 am</td>
-              <td>11:00 am</td>
-              <td>14:00 am</td>
-              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
-            </tr>
-            <tr>
-              <td>Mark Kako</td>
-              <td>8:00 am</td>
-              <td>11:00 am</td>
-              <td>14:00 am</td>
-              <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
-            </tr>
-            <tr>
-              <td>Yoko Ono</td>
-              <td>10:30 am</td>
-              <td>11:00 am</td>
-              <td>14:00 am</td>
-              <td><i class="bi bi-x" style="color: #CE1515;"></i></td>
-            </tr>
-          </tbody>
-        </table>
 
-      </div>
-    </div>
+          <div class="container-table">
+            <table v-show="table ==='log'" class="table table-dark table-striped table-hover animate__animated animate__fadeInRight">
+              <thead>
+                <tr>
+                  <th class="text-center" scope="col">Employees</th>
+                  <th class="text-center" scope="col">Check-in time</th>
+                  <th class="text-center" scope="col">Break</th>
+                  <th class="text-center" scope="col">Departure time</th>
+                  <th class="text-center" scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody class="tbody-gerency">
+                <tr>
+                  <td>Yaki Siera</td>
+                  <td>8:00 am</td>
+                  <td>11:00 am</td>
+                  <td>14:00 am</td>
+                  <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+                </tr>
+                <tr>
+                  <td>Mark Kako</td>
+                  <td>8:00 am</td>
+                  <td>11:00 am</td>
+                  <td>14:00 am</td>
+                  <td><i class="bi bi-check-lg" style="color: #2DC214;"></i></td>
+                </tr>
+                <tr>
+                  <td>Yoko Ono</td>
+                  <td>10:30 am</td>
+                  <td>11:00 am</td>
+                  <td>14:00 am</td>
+                  <td><i class="bi bi-x" style="color: #CE1515;"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div v-show="table === 'singin'">
+            <form class="d-flex flex-column form-gerency animate__animated animate__fadeInRight">
+              
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input">
+                    
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input">
+  
+                <label class="form-label">Repeat Password</label>
+                <input type="password" class="form-input">
+              
+              <button type="submit" class="btn btn-submit mt-3">Submit</button>
+            </form>
+          </div>
+
+          
+        </div>
       </template>
 
 
@@ -213,9 +230,9 @@
         <div class="title mb-3">STAFF ACCOUNT</div>
         <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
       </div>
-  </div>
 
-  </footer>
+
+    </footer>
   </div>
 
   <!-- CHART.JS -->
