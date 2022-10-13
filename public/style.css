@@ -50,6 +50,11 @@ nav{
     align-items: center;
 }
 
+.container-nav img{
+   margin-left: 10px; 
+
+}
+
 .container-nav-carrito{
     position: absolute;
     right: 10px;
@@ -220,6 +225,7 @@ nav{
     display: flex;
     justify-content: center;
     gap: 35px;
+    margin-bottom: 20px;
 }
 
 .container-brands img:nth-child(1){
@@ -229,14 +235,14 @@ nav{
     margin-top: 10px;
 }
 
-.container-brands img:nth-child(2){
+.container-brands img:nth-child(3){
     width: 90px;
     height: 60px;
     opacity: 0.5;
 }
-.container-brands img:nth-child(3){
+.container-brands img:nth-child(2){
     width: 100px;
-    height: 90px;
+    height: 70px;
     opacity: 0.5;
     padding-bottom: 10px;
 }
@@ -255,16 +261,11 @@ main{
 
 .container-portada .container-welcome{
     position: absolute;
-    padding: 0px 10px;
-    border-radius: 5px;
+    padding: 20px !important;
     
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.815);
 }
 
-
-.container-welcome h2:nth-child(3){
-    color: brown;
-}
 
 .container-img-portada{
     display:flex;
@@ -434,6 +435,10 @@ main{
     margin-right: 250px;
 }
 
+.logo-portada{
+    width: 270px;
+}
+
 /* MEDIA QUERY */
 
 @media (min-width: 768px) {
@@ -525,6 +530,33 @@ main{
     }
     .modal-nav .button-header{
         font-size: 25px;
+    }
+
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute;
+        left: 50px;
+        padding: 5px !important;
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
+    .logo-portada{
+        width: 180px;
     }
 
 }
@@ -621,8 +653,8 @@ main{
     
     .container-portada .container-welcome{
         position: absolute;
-        padding: 0px 10px; 
-        left: 200px;
+        padding: 15px !important;
+        left: 150px;
     }
 
     .container-img-portada{
@@ -633,6 +665,10 @@ main{
     
     .container-img-portada img{
         width: 100%;
+    }
+
+    .logo-portada{
+        width: 200px;
     }
 
     
@@ -727,6 +763,40 @@ main{
         display: flex;
 
     }
+
+    .container-portada{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-portada .container-welcome{
+        position: absolute; 
+        left: 50px;
+        padding: 0px 5px !important;
+    }
+
+    .welcome-portada {
+        font-size: 15px !important;
+    }
+
+    .logo-portada{
+        width: 100px;
+    }
+
+    .container-img-portada{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .container-img-portada img{
+        width: 100%;
+    }
+
+
+
 }
 
 @media (min-width : 320px) and (max-width : 769px){

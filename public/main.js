@@ -65,7 +65,6 @@ const app = Vue.createApp({
       else {
         this.navOpen = false
       }
-    
     },
     printAll: function () {
       this.allShoes = []
