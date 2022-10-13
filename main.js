@@ -29,8 +29,11 @@ createApp({
     .catch(err => console.log(err))
     //local storage
     this.shoes=JSON.parse(localStorage.getItem("shoes")) ||[]
-    console.log(this.shoes)
-    this.cart=JSON.parse(localStorage.getItem("cart"))|| []
+    let cart = JSON.parse(localStorage.getItem("cart"))?.map( e => e.id)
+    if(cart){
+      let aux = this.shoes.filter( e => cart.includes(e.id))
+      this.cart= aux
+    }
   },
 
   methods:{
