@@ -439,6 +439,43 @@ main{
     width: 270px;
 }
 
+.form-gerency{
+    margin-right: 210px !important;
+}
+
+.form-label{
+color: aliceblue;
+text-align: center;
+margin-top: 3px;
+}
+.form-label:hover{
+    color: brown;
+}
+
+.form-input{
+background-color: rgba(42, 42, 42, 0.681);
+color: aliceblue;
+border: 1px solid aliceblue;
+border-radius: 20px;
+padding: 2px;
+text-align: center;
+}
+
+.form-input:focus{
+    border: 1.5px solid brown !important ;
+}
+
+.btn-submit{
+    background-color: rgb(212, 37, 37);
+    color: aliceblue;
+}
+.btn-submit:hover{
+    background-color: rgba(199, 51, 51, 0.818);
+    color: aliceblue;
+    border: 1px solid aliceblue;
+    padding: 8.5px;
+}
+
 /* MEDIA QUERY */
 
 @media (min-width: 768px) {
@@ -805,21 +842,51 @@ main{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-size: 15px;
     }
     .title-footer{
         padding: 2rem 8rem;
         border: none;  
     }
     .title-footer:after{
-        font-size: 14px;
+        font-size: 12px;
     }
     .conteiner-footer{
         margin-top: 30px;
 
     }
+
+    .conteiner-gerency-nav{
+        display: flex;
+        flex-direction: column;
+    }
+    .conteiner-desk{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-top: 50px ;
+    }
+    .buttons-graphics, .buttons-graphics-rigth{
+        margin: 0;
+        width: 70%;
+        display: block;
+        text-align: center;
+        margin-left: 60px;
+    }
+    .graphics{
+        width: 350px;
+    }
+    .container-table{
+        width: 100%;
+        height: auto;
+        margin-top: 50px;
+        font-size: 13px;
+    }
+    .form-gerency{
+        width: 80%;
+        margin-left: 38px !important;
+    }
 }
-
-
 
 
 /* FORM */
@@ -832,6 +899,156 @@ main{
     cursor: pointer;
 }
 
-/* alerta de compra */
 
-/* alerta de contact form */
+/* TO DO */
+
+.container-staff{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.todo-container {
+    width: 1300px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    border-radius: 5px !important;
+  }
+  
+  .status {
+    width: 25%;
+    background-color: #f3f3f358;
+    position: relative;
+    padding: 60px 1rem 0.5rem;
+  }
+  
+  .status:nth-child(even) {
+    background-color: #e9e9e928;
+  }
+  
+  .status h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #343434;
+    color: #FF5757;
+    margin: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 30px !important;
+  }
+  
+  #add_btn {
+    padding: 0.5rem 1rem;
+    background-color: rgb(0, 0, 0);
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  #add_btn:hover {
+    background-color: #aaa;
+    color: black;
+  }
+  
+  .todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px,
+      rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: white;
+  }
+  
+  .todo .close {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 0rem !important;
+    font-size: 2rem !important;
+    color: #ccc !important;
+    cursor: pointer !important;
+  }
+  
+  .todo .close:hover {
+    color: #343444 !important;
+  }
+  
+  /* modal */
+  
+  .close-modal {
+    background: none !important;
+    border: none !important;
+    font-size: 1.5rem !important;
+  }
+  
+  .modal-todo {
+    width: 450px;
+    position: fixed;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.3s ease-in-out;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 2;
+    background-color: #fff;
+  }
+  
+  .modal-todo.active {
+    top: 15%;
+  }
+  
+  .modal-todo .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .modal-todo .body {
+    padding: 0.75rem;
+  }
+  
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  #overlay.active {
+    display: block;
+  }
+  
+  #todo_input,
+  #todo_submit {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin: 0.25rem;
+  }
+  
+  #todo_submit {
+    background-color: #FF5757;
+    color: #f3f3f3;
+    font-size: 1.25rem;
+    border: none;
+  }
