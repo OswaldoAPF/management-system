@@ -66,13 +66,13 @@
             </div>
             <div class="offcanvas-body">
               <template v-for="product in cart">
-                <div class="card_cart m-3 d-flex align-items-start border p-3" v-if="product.inCart > 0">
+                <div class="card_cart m-3 d-flex align-items-start border p-3 border-dark"  v-if="product.inCart > 0">
                   <div class="card-body">
                     <img class="w-25" :src="product.image" alt="cart_imagen">
                     <h5 class="card-title fw-bold">{{product.title}}</h5>
                     <p class="card-text">Quantity: {{product.inCart}}</p>
                     <p class="card-text">${{product.total}}</p>
-                    <button class="btn btn-sacar fw-bold" @click="deleteCartProduct(product)">Remove of cart</button>
+                    <button class="btn btn-sacar btn-dark " @click="deleteCartProduct(product)">Remove of cart</button>
                   </div>
                 </div>
                 <div v-else></div>
@@ -80,7 +80,7 @@
             </div>
             <div class="d-flex justify-content-center flex-column align-items-center border-top">
               <p class="fs-5"><span class="fw-bold">Total: </span>${{totalPrice}}</p>
-              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2" type="button">Buy!</button>
+              <button @click="buy" class="btn w-75 btn-comprar fw-bold mb-2 btn-dark" type="button">Buy!</button>
             </div>
           </div>
 
