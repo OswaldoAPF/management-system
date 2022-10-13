@@ -276,9 +276,16 @@ main{
 }
 
 .color-subtitle{
-    color: #FF5757
+    color: #FF5757;
 }
 
+.color-buttons{
+    background-color: #FF5757 !important;
+}
+
+.color-buttons:hover{
+    background-color: #ff6c6c !important;
+}
 
 /* FOOTER */
 .footer {
@@ -303,6 +310,12 @@ main{
     letter-spacing: .2rem;
     font-weight: 700;
     text-shadow: .1rem .1rem .1rem #333;
+}
+
+.footer-iframe{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #ff5757;
 }
 
 /* ADDRESS */
