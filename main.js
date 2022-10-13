@@ -162,8 +162,8 @@ const app = Vue.createApp({
     //alert("Thaks for the purchase")
     Swal.fire({
       title:"Thank you!",
-      width:"40vw",
-      html:"<b class='buyAlert'> </b>"
+      //width:"40vw",
+      html:"<template class='buyAlert'> </template>"
     })
   },
 
@@ -198,8 +198,8 @@ const app = Vue.createApp({
     contactAlert(){
       Swal.fire({
         title:"Sent!",
-        width:"40vw"
-        //html:"<b class='buyAlert'> </b>" //para ponerle clase y modificarlo en css
+        //width:"40vw"
+       // html:"<template class='buyAlert'> </template>" //para ponerle clase y modificarlo en css
       })
     }
   }
