@@ -7,7 +7,7 @@ const app = Vue.createApp({
       cart: [],
       totalPrice:Number(localStorage.getItem("totalPrice")),
       openModalNav: false,
-      page: "home",
+      page: "login",
       test: [1, 12, 6, 9, 12, 3, 9],
       graphics: "month",
       table: "log",
@@ -188,6 +188,11 @@ const app = Vue.createApp({
       this.favShoes = this.favShoes
       this.page = "fav"
     },
+
+    //-------------------LOGIN---------------------------
+    printLogin: function(){
+      this.page = "login"
+    }
 
   }
 

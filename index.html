@@ -250,9 +250,9 @@
 
       <!-- FAVS -->
     <section v-if="page === 'fav'" class="d-flex flex-wrap justify-content-center gap-5">
-      <h1 class="w-100 text-center">Favorites</h1>
+      <h1 class="w-100 text-center text-light">Favorites</h1>
 
-      <div class="alert alert-warning h-100" v-if="favShoes.length === 0" role="alert">
+      <div class="alert alert-danger h-100" v-if="favShoes.length === 0" role="alert">
         Nothing in favorites yet!!!
       </div>
 
@@ -336,6 +336,28 @@
       </section>
     </template>
 
+    <template v-if="page === 'login'">
+      <h1 class="text-light text-center mb-4">LOGIN FOR STAFF</h1>
+
+      <form class="d-flex flex-column form-contact text-dark bg-light justify-content-center align-items-center text-start col-lg-4 col-md-4 col-sm-12 m-auto">
+
+        <label class="w-50 pt-4 fw-semibold m-auto">Name and Surname <br>
+          <input type="text" class="w-100 border ">
+        </label>
+
+        <label class="w-50 py-3 fw-semibold ">Password <br>
+          <input type="password" class="w-100 border" >
+        </label>
+
+
+        <label class="w-100 m-auto d-flex justify-content-center mb-3 mt-4">
+          <button type="submit" class="btn color-buttons fw-bold  my-3 w-50">LOGIN</button>
+        </label>
+
+      </form>
+
+    </template>
+
 
     </main> 
 
@@ -355,7 +377,7 @@
       </div>
       <div class="conteiner-footer">
         <div class="title mb-3">STAFF ACCOUNT</div>
-        <div class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</div>
+        <button @click="printLogin" class="paragraph-footer"><i class="bi bi-person-circle me-2"></i>Login</button>
       </div>
 
   </footer>
@@ -364,6 +386,18 @@
   <!-- CHART.JS -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+
+
+<!-- FIREBASE -->
+
+
+
+<!-- <script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
+<script src="/__/firebase/9.8.3/firebase-database-compat.js"></script>
+<script src="/__/firebase/9.8.3/firebase-auth-compat.js"></script>
+<script src="/__/firebase/init.js"></script> -->
+
 
 
   <!-- SWEET ALERT -->
